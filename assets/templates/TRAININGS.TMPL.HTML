@@ -1,0 +1,17 @@
+<div flex-gt-xs="10" layout="column" ng-repeat="t in trainings | filter:searchText" ng-controller= "DialogCtrl" >
+
+<md-button flex class="md-raised" ng-click="showAdvanced($event,t.id)" layout-align="start start" style="float:left">
+      <md-card-title layout-align="start start" style="float:left">
+        <md-card-title-text style="float:left">
+          <span style="float:left" class="md-headline">{{ t.displayName }}</span>
+        </br>
+          <span style="float:left" hide-xs class="md-subhead" hide-xs>{{ t.lector }}</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-sm card-media"></div>
+        </md-card-title-media>
+      </md-card-title>          
+</md-button>
+
+</div>
+

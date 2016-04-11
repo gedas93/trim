@@ -1,0 +1,139 @@
+<!-- <md-dialog ng-controller="RegCtrl" aria-label="Registration"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Registration</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="./assets/icons/close.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="padding: 25px">
+
+    <div ng-cloak>
+      <md-content>
+        <md-tabs  md-border-bottom>
+          <md-tab label="register">
+            <md-content class="md-padding">
+                 <h1 class="md-display-2">Tab Two</h1>
+              Trainings: <h2 style="float:center">{{ trainings[sel].displayName }}</h2>
+              Discription: <p >{{ trainings[sel].discription }}</p>
+            </md-content>
+          </md-tab>
+          <md-tab label="info">
+            <md-content class="md-padding">
+             
+
+              <div ng-controller="NamesCtrl as ctrl" layout="column" ng-cloak>
+                  <md-content layout-padding layout="column">
+                    <form ng-submit="$event.preventDefault()">
+                      <md-autocomplete
+                          ng-disabled="ctrl.isDisabled"
+                          md-no-cache="ctrl.noCache"
+                          md-selected-item="ctrl.selectedItem"
+                          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                          md-search-text="ctrl.searchText"
+                          md-selected-item-change="ctrl.selectedItemChange(item)"
+                          md-items="item in ctrl.querySearch(ctrl.searchText)"
+                          md-item-text="item.name"
+                          md-min-length="0"
+                          placeholder="Enter your name"
+                          md-menu-class="autocomplete-custom-template">
+                        <md-item-template>
+                          <span class="item-title">
+                            <span> {{item.name}} </span>
+                          </span>
+                          
+                        </md-item-template>
+                      </md-autocomplete>
+                    </form>
+                  </md-content>
+                </div>
+
+            </md-content>
+          </md-tab>
+          <md-tab label="comments">
+            <md-content class="md-padding">
+              
+              <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
+
+
+    
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      
+      
+    </md-dialog-actions>
+  </form>
+</md-dialog> -->
+
+<md-dialog flex ng-controller="RegCtrl" aria-label="Registration"  ng-cloak >
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div flex="33">
+        <md-button class="md-icon-button md-primary" aria-label="Left Navigation Bar" ng-click="openLeftMenu()" hide-gt-md>
+          <md-icon md-svg-icon="./assets/icons/leftMenu.svg"></md-icon>
+        </md-button>
+        
+        </div>
+
+        <h2>{{ trainings[sel].displayName }}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="./assets/icons/close.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+  </md-toolbar>
+  <md-dialog-content >
+    <md-tabs>
+      <md-tab label="info" ><!-- tab 1  -->
+        <div style="padding: 25px; height:100%" >
+
+          <h1>{{ trainings[sel].displayName }}</h1>
+          <p>Some discription about trainings ... </p>
+        </br>
+          <h4>Lecturer : {{ trainings[sel].lector }}</h4>
+          Upcomming events : 
+
+        </div>
+      </md-tab>
+      <md-tab label="registration"><!-- tab 2 --> 
+        <div ng-controller="NamesCtrl as ctrl" layout="column" ng-cloak>
+                  <md-content layout-padding layout="column">
+                    <form ng-submit="$event.preventDefault()">
+                      <md-autocomplete
+                          ng-disabled="ctrl.isDisabled"
+                          md-no-cache="ctrl.noCache"
+                          md-selected-item="ctrl.selectedItem"
+                          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                          md-search-text="ctrl.searchText"
+                          md-selected-item-change="ctrl.selectedItemChange(item)"
+                          md-items="item in ctrl.querySearch(ctrl.searchText)"
+                          md-item-text="item.name"
+                          md-min-length="0"
+                          placeholder="Enter your name"
+                          md-menu-class="autocomplete-custom-template">
+                        <md-item-template>
+                          <span class="item-title">
+                            <span> {{item.name}} </span>
+                          </span>
+                          
+                        </md-item-template>
+                      </md-autocomplete>
+                    </form>
+                  </md-content>
+                </div>
+
+      </md-tab>
+      <md-tab label="comments"></md-tab>
+    </md-tabs>
+  </md-dialog-content>
+</md-dialog>
