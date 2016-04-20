@@ -38,12 +38,12 @@
                           </md-item-template>
                         </md-autocomplete>
                       </div>
-                      <md-divider ng-if="!$last"></md-divider>
+                     
                       <div layout="row" layout-align="start center">
                         <p flex = "15"><strong>Select date:</strong></p>
                         <md-select ng-model="selectedEventId" aria-label="Select Event" flex="35">
-                          <md-option ng-value="1" >1</md-option>
-                          <md-option ng-value="2" >2</md-option>
+                          <md-option ng-repeat="ev in events" ng-value="{{ ev.id }}" >{{ ev.startDate }}</md-option>
+                          
                         </md-select>
                         </md-input-container>
                       </div>

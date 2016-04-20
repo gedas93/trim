@@ -6,7 +6,7 @@
 </div>
 
 <div flex-gt-xs="10" layout="column" ng-repeat="t in trainings | filter:searchText" ng-controller= "DialogCtrl" >
-  <md-button flex ng-click="showTrainingDetails(t.id)" layout-align="start start" style="float:left" >
+  <md-button flex ui-sref="trainingsinner({id : t.id})" layout-align="start start" style="float:left" >
     <div flex layout="row" class="media">
       <div flex="10">
         <img style="border-radius:8px; height:60px; width:auto" class="media-object" src="{{t.imgUrl}}" layout-align="start center">
@@ -21,14 +21,14 @@
 
       <div flex="30">
         <div layout="column" flex layout-align="center center">
-          <div >upcomming event:</div>
+          <div ></br></div>
           <div>2016-04-30</div>
         </div>
       </div>
 
       <div flex="30">
         <div layout="column" flex layout-align="center center">
-          <div >attendees:</div>
+          <div ></br></div>
           <div>0 of 30</div>
         </div>
       </div>
