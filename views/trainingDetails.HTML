@@ -1,67 +1,45 @@
-<div ng-controller="TrainingDetailsCtrl">
-    <md-tabs md-dynamic-height>
-      <md-tab label="info" layout = "column"><!-- tab 1  -->
-        <h1>{{ tr.name }}</h1>
-          <p>Some discription about trainings ... </p>
-        </br>
-          <p>Lector : <strong>{{ tr.lector }}</strong></p>
-          <p>Length : <strong>{{ tr.hours }} hours</strong></p>
-          <p>Status : <strong>{{ tr.status }}</strong></p>
-          
-
-        
-      </md-tab>
-      <md-tab label="registration" ><!-- tab 2 -->
-        </br>
-        <p>Some info or some disclaimer... bla bla bla</p> 
-        <div ng-controller="NamesCtrl as ctrl" layout="column" ng-cloak>
-                  <md-content layout-padding layout="column" style="background-color:#F5F5F5">
-                    <form flex ng-submit="$event.preventDefault()" style="background-color:#F5F5F5">
-                      <div layout="row" layout-align="start center">
-                        <md-divider ng-if="!$last"></md-divider>
-                        <p flex = "15"><strong>Enter your name and surname:</strong></p>
-                        <md-autocomplete flex="35"
-                            ng-disabled="ctrl.isDisabled"
-                            md-no-cache="ctrl.noCache"
-                            md-selected-item="ctrl.selectedItem"
-                            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                            md-search-text="ctrl.searchText"
-                            md-selected-item-change="ctrl.selectedItemChange(item)"
-                            md-items="item in ctrl.querySearch(ctrl.searchText)"
-                            md-item-text="item.name"
-                            md-min-length="0"
-                            placeholder="Name Surname"
-                            md-menu-class="autocomplete-custom-template">
-                          <md-item-template>
-                            <span class="item-title">
-                              <span> {{item.name}} </span>
-                          </md-item-template>
-                        </md-autocomplete>
-                      </div>
-                     
-                      <div layout="row" layout-align="start center">
-                        <p flex = "15"><strong>Select date:</strong></p>
-                        <md-select ng-model="selectedEventId" aria-label="Select Event" flex="35">
-                          <md-option ng-repeat="ev in events" ng-value="{{ ev.id }}" >{{ ev.startDate }}</md-option>
-                          
-                        </md-select>
-                        </md-input-container>
-                      </div>
-                      <md-divider ng-if="!$last"></md-divider>
-                    <div layout="row" layout-align="start center">
-                      <md-checkbox ng-model="agree" aria-label="I agree" flex="35">
-                        <p>I agree with <a href="">terms and conditions</a></p>
-                      </md-checkbox>
-                      <md-button flex="15" class="md-raised" ng-disabled="!agree" >Submit</md-button> 
-                    </div>
-                    <md-divider ng-if="!$last"></md-divider>
-                    </form>
-                  </md-content>
-        </div>
-
-        <md-input-container>
-
-      </md-tab >
-      <md-tab ng-if="false" label="comments"><!-- tab 3 --></md-tab> 
-    </md-tabs>
+<div ng-controller="TrainingDetailsCtrl" >
+  <div layout="row" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 5px; padding: 10px">
+    <div flex="66" layout="column">
+      <h1>{{ tr.name }}</h1>
+      <strong><p>{{ tr.type }} / {{ tr.internal ? "Internal" : "External" }}</p></strong>
+      <p>{{ tr.discription }}</p>
+      <p ng-if="tr.lector">Lector : <strong>{{ tr.lector }}</strong></p>
+      <p ng-if="tr.hours">Length : <strong>{{ tr.hours }} hours</strong></p>
+      <p ng-if="tr.status">Status : <strong>{{ tr.status }}</strong></p>
+      <p ng-if="tr.responsiblePerson">Responsible Person : <strong>{{ tr.responsiblePerson }}</strong></p> 
+      <p ng-if="tr.provider">Provider : <strong>{{ tr.provider }}</strong></p>
+    </div>
+    <md-divider></md-divider>
+    <div flex="33" layout="column" >    
+      <div layout="column">
+        <md-button class="md-raised md-primary" ng-click="subscribe(tr.id)" >Subscribe</md-button>
+        <md-button class="md-raised md-warn" ng-click="showRegistrationDialog(tr.id)">Register ({{ tr.price }} Eur)</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="true" >Take a test !</md-button>
+      </div>
+      <div>
+        <img src="{{ tr.imgUrl }}" style="width: 100%; height: auto;border-radius: 10px; padding: 5px;"> 
+      </div>
+    </div>
+      
+  </div>
+  <div layout="column" layout-align="center center" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 5px; padding: 10px ;margin-top: 15px">
+    <div ng-if="!plannedEvent(tr.id)" style="font-weight: bold ;" layout-align="center center">
+    <p>Currently there a no trainings avialable. Click subscribe to be notified about changes regarding this training course.</p> 
+    </div>
+    <table style="width: 100%;" ng-if="plannedEvent(tr.id)">
+      <tr style="font-weight: bold">
+        <td>No.</td>
+        <td>Event Date</td>
+        <td>Location</td>
+        <td>Atendees</td>
+      </tr>
+      <tr ng-repeat="ev in events | filter: {trainingId: tr.id}">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ ev.startDate }}</td>
+        <td>VNO HQ Moscow Training Room</td>
+        <td>15 of 29</td>
+      </tr>
+    </table>
+  </div>
 </div>

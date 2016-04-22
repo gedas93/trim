@@ -1,0 +1,20 @@
+<md-dialog aria-label="aaa"  >
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      {{ TrainigId }}
+    </div>
+  </md-toolbar>
+  <md-dialog-content >
+
+      <md-input-container flex>
+        <label>Email</label>
+        <input type="text"/>
+      </md-input-container> 
+
+    </div>   
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog()" class="md-raised">Cancel</md-button>
+    <md-button ng-click="closeDialog()" class="md-raised md-warn">Submit</md-button>
+  </md-dialog-actions>
+</md-dialog>

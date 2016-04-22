@@ -1,0 +1,40 @@
+<md-dialog aria-label="List dialog" style="width: 50%; " >
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      {{ TrainigId }}
+    </div>
+  </md-toolbar>
+  <md-dialog-content >
+    <div style="padding: 20px;" layout="column">
+
+<!--       <md-autocomplete md-placeholder="Name and Surname" md-selected-item="selectedItem(item.id)" md-search-text="searchText" md-items="item in acItems(searchText)" md-item-text="item.name">
+        <span md-highlight-text="searchText">{{item.name}}</span>
+      </md-autocomplete> -->
+
+      <md-input-container flex style="padding: 20px">
+        <label>Name</label>
+        <input type="email"/>
+      </md-input-container>
+
+      <md-input-container flex style="padding: 20px">
+        <label>Surname</label>
+        <input type="email"/>
+      </md-input-container>
+
+      <md-input-container flex style="padding: 20px">
+        <label>Email Adress</label>
+        <input type="email"/>
+      </md-input-container>
+
+      <md-input-container flex style="padding: 20px">
+        <label>Department</label>
+        <input type="text"/>
+      </md-input-container> 
+
+    </div>   
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog()" class="md-raised">Cancel</md-button>
+    <md-button ng-click="submitRegistration()" class="md-raised md-warn">Submit</md-button>
+  </md-dialog-actions>
+</md-dialog>
