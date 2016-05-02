@@ -1,5 +1,5 @@
 // Include the dependency upon ngMaterial - important !!
-var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui.router']);   
+var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui.router', 'angular-notification-icons']);   
 
 // Dialog controller
         Trim.controller('DialogCtrl', function($scope, $mdDialog, $mdMedia, $rootScope,Training) {
@@ -146,34 +146,18 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
 
 //Toolbar Controller
 
-          Trim.controller('ToolbarCtrl',function($scope, $mdDialog, $mdSidenav){
-              var vm = this;
-              this.announceClick = function(index) {
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .title('You clicked!')
-                    .textContent('You clicked the menu item at index ' + index)
-                    .ok('Nice')
-                );
-              };
-              $scope.openLeftMenu = function() {
-                $mdSidenav('left').toggle();
-              };
-              $scope.isOpen = false;
-              $scope.searchMenu = {
-                isOpen: true,
-                count: 0,
-                selectedDirection: 'left' 
-                  };
-                });
+
               
 
 //Side Navigation Controller
 
-          Trim.controller('BodyCtrl',function($scope){
+          Trim.controller('BodyCtrl',function($scope, $rootScope, $mdSidenav){
             $scope.adminUser = true;
             $scope.$watch('$scope.adminUser', function(){
             console.log("admin has logged in");
+            $scope.openRightMenu = function() {
+              $mdSidenav('right').toggle();
+            };
           });
           }
           );

@@ -1,0 +1,33 @@
+<md-dialog >
+	<md-toolbar md-whiteframe="8">
+	    <div flex class="md-toolbar-tools" layout-align="space-between center" style="">
+	      <p>Login</p>
+	      <md-button class="md-icon-button" ng-click="closeDialog()">
+	      	<md-icon md-svg-src="./assets/icons/close.svg" aria-label="Close"></md-icon>
+	      </md-button>
+	    </div>
+  	</md-toolbar>
+  	<form ng-submit="loginAction()">
+		<md-dialog-content class="md-padding" style="padding: 30px;">
+			<div flex layout="column" layout-align="center stretch">
+				<md-input-container  style="">
+		          <label>Username</label>
+		          <input type="name" required ng-model="login.username"/>
+		        </md-input-container>
+		        <md-input-container  style="">
+		          <label>Password</label>
+		          <input type="password" required ng-model="login.password"/>
+		        </md-input-container >
+		        <md-input-container  style="">
+			        <md-checkbox flex ng-model="login.remember">
+						Remember me
+					</md-checkbox>
+				</md-input-container>
+			</div>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="column" flex>
+		  <md-button flex type="submit" class="md-raised md-primary">Login</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
