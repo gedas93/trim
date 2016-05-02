@@ -17,10 +17,10 @@ Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootSco
       //console.log(item + " selected");
       $rootScope.resetAllMenuItems();
       $scope.selectedItemCurrent[item].fontweight = "bold";
-      $scope.selectedItemCurrent[item].bcgColor = "#EF5350";
-      //$rootScope.mainBodyContent = $scope.selectedItemCurrent[item].refSrc;
+      $scope.selectedItemCurrent[item].bcgColor = "#1565C0";
       $mdSidenav('left').toggle();
     }
+    
     $scope.selectContentItem = $rootScope.selectContentItem
     $rootScope.$watch('mainBodyContent', function(){
       console.log("mainBodyContent at ListCtrl has changed")

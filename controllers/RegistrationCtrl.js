@@ -1,8 +1,9 @@
-Trim.controller('RegistrationCtrl', function($scope, $rootScope ,Training, $mdDialog, Employee, $q) {
+Trim.controller('RegistrationCtrl', function($scope, $rootScope ,Training, $mdDialog, Employee, $q, Registration, Event) {
 	
 	Training.find({},function(res){
 		$scope.trainings = res;
 	});
+
 
 	var ac = this;
 	ac.employees = loadAll();
@@ -31,21 +32,41 @@ Trim.controller('RegistrationCtrl', function($scope, $rootScope ,Training, $mdDi
 	$scope.closeDialog = function(){
 		$mdDialog.hide();
 	};
+
 	$scope.TrainigId = $rootScope.currentTrId;
+
+
+	Event.find({},function(res){
+		$scope.events = res;
+		console.log($scope.events)
+	});
 
 	$scope.selectedItem = function (sItem) {
 		console.log(sItem);
 	};
 
+	
+
 	$scope.submitRegistration = function () {
-		$mdDialog.hide();
-		$mdDialog.show(
-			$mdDialog.alert()
-				.title('Registration Complete')
-		        .textContent('You have succesfully registered for trainig course. Check your email for further information.')
-		        .ok('Got it!')
-		);
+		$scope.registration.regDate = new Date();
+		Registration.create($scope.registration,
+		function (res)
+		{
+			$mdDialog.hide();
+			$mdDialog.show(
+				$mdDialog.alert()
+					.title('Registration for '+ $scope.TrainigId +' completed')
+			        .textContent('Dear, '+ $scope.registration.name +' ! You have succesfully registered for training course. Check your email for further information.')
+			        .ok('Thanks!')
+			);
+		}, function (err)
+		{
+			$mdDialog.show(
+				$mdDialog.alert()
+					.title('Ups... Something went wrong.')
+			        .textContent('Please contact helpdesk@fltechnics.com. Error : ', err )
+			        .ok('Ok')
+			);
+		});
 	};
-
-
 });

@@ -1,34 +1,52 @@
 <div ng-controller="TrainingDetailsCtrl" >
-  <div layout="row" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 5px; padding: 10px">
-    <div flex="66" layout="column">
-      <h1>{{ tr.name }}</h1>
-      <strong><p>{{ tr.type }} / {{ tr.internal ? "Internal" : "External" }}</p></strong>
-      <p>{{ tr.discription }}</p>
-      <p ng-if="tr.lector">Lector : <strong>{{ tr.lector }}</strong></p>
-      <p ng-if="tr.hours">Length : <strong>{{ tr.hours }} hours</strong></p>
-      <p ng-if="tr.status">Status : <strong>{{ tr.status }}</strong></p>
-      <p ng-if="tr.responsiblePerson">Responsible Person : <strong>{{ tr.responsiblePerson }}</strong></p> 
-      <p ng-if="tr.provider">Provider : <strong>{{ tr.provider }}</strong></p>
+
+  <div layout="column" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 3px;">
+
+    <div ng-if="adminUser" layout="row" ng-controller="AdminCtrl" class="md-whiteframe-3dp" style="background-color:#FFFFFF; color: #000000; border-radius: 3px 3px 0px 0px ">
+      <!-- Admin toolbar -->        
+      <md-button ng-click="adminAdd.event()">Add Event</md-button>
+      <md-button ng-click="adminEdit.event()">Edit Events</md-button>
+      <md-button ng-click="adminEdit.training()">Edit training</md-button>      
     </div>
-    <md-divider></md-divider>
-    <div flex="33" layout="column" >    
-      <div layout="column">
-        <md-button class="md-raised md-primary" ng-click="subscribe(tr.id)" >Subscribe</md-button>
-        <md-button class="md-raised md-warn" ng-click="showRegistrationDialog(tr.id)">Register ({{ tr.price }} Eur)</md-button>
-        <md-button class="md-raised md-primary" ng-disabled="true" >Take a test !</md-button>
+
+    <div layout="row" class="md-padding">
+
+      <div flex="66" layout="column" layout-align="start start">
+        <p style="font-size: 18pt; font-weight: bold"><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/trainingName.svg" ></md-icon>{{ tr.name }}</p>
+        <strong><p>{{ tr.type }} / {{ tr.internal ? "Internal" : "External" }}</p></strong>
+        <p><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/discription.svg" ></md-icon>{{ tr.discription }}</p>
+        <p ng-if="tr.lector"><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/lector.svg" ></md-icon>Lector : <strong>{{ tr.lector }}</strong></p>
+        <p ><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/time.svg" ></md-icon>Length : <strong>{{ tr.hours }} hours</strong></p>
+        <p ng-if="tr.status"><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/status.svg" ></md-icon>Status : <strong>{{ tr.status }}</strong></p>
+        <p ng-if="tr.responsiblePerson"><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/responsible.svg" ></md-icon>Responsible Person : <strong>{{ tr.responsiblePerson }}</strong></p> 
+        <p ng-if="tr.provider"><md-icon style="margin-right: 10px" md-svg-src="./assets/icons/provider.svg" ></md-icon>Provider : <strong>{{ tr.provider }}</strong></p>
       </div>
-      <div>
-        <img src="{{ tr.imgUrl }}" style="width: 100%; height: auto;border-radius: 10px; padding: 5px;"> 
-      </div>
-    </div>
+      <md-divider></md-divider>
+
       
-  </div>
-  <div layout="column" layout-align="center center" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 5px; padding: 10px ;margin-top: 15px">
-    <div ng-if="!plannedEvent(tr.id)" style="font-weight: bold ;" layout-align="center center">
-    <p>Currently there a no trainings avialable. Click subscribe to be notified about changes regarding this training course.</p> 
+      <div flex="33" layout="column" layout-align="start stretch">    
+        <div layout="column">
+          <md-button class="md-raised md-primary" ng-click="subscribe(tr.id)" >Subscribe</md-button>
+          <md-button class="md-raised md-primary" ng-click="feedback(tr.id)" >Leave a feedback</md-button>
+          <md-button class="md-raised md-warn" ng-disabled="!plannedEvent(tr.id)" ng-click="showRegistrationDialog(tr.id)">Register ({{ tr.price }} Eur)</md-button>
+          <md-button class="md-raised md-primary" ng-disabled="true" >Take a test !</md-button>
+        </div>
+        <div layout-align="center center">
+          <img src="{{ tr.imgUrl }}" style="width: 50%; height: auto; border-radius: 10px; padding: 0px;"> 
+        </div>
+      </div>
+        
     </div>
-    <table style="width: 100%;" ng-if="plannedEvent(tr.id)">
-      <tr style="font-weight: bold">
+
+  </div>
+  <div layout="column" layout-align="center center" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 5px; padding: 10px ; margin-top: 15px ">
+
+    <div ng-if="!plannedEvent(tr.id)" style=" font-weight: bold ;" layout-align="center center">
+      <p> Currently there a no trainings avialable. Click subscribe to be notified about changes regarding this training course. </p> 
+    </div>
+
+    <table style="width: 100%;" ng-if="plannedEvent(tr.id)" >
+      <tr style= "font-weight: bold;">
         <td>No.</td>
         <td>Event Date</td>
         <td>Location</td>
@@ -41,5 +59,7 @@
         <td>15 of 29</td>
       </tr>
     </table>
+
   </div>
+
 </div>

@@ -39,6 +39,8 @@ Trim.controller('TrainingDetailsCtrl', function($scope, $rootScope, Training, Ev
 
     $scope.plannedEvent = function(variable) {
     	var result = false;
+    	if(!$scope.events)
+    		return result;
     	for (var i = 0 ; i <= $scope.events.length - 1 ; i++) {
 			if($scope.events[i].trainingId == variable){
 				result = true;

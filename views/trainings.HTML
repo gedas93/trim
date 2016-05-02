@@ -1,17 +1,25 @@
-  <div flex-gt-xs="10" layout:"row" style="" >  
-    <md-input-container flex="100"  md-no-float class="md-block" style="color: #FFFFFF" >
-      <md-icon md-svg-src="./assets/icons/search.svg" ></md-icon>
-      <input ng-model="searchText" type="text" placeholder="Search"  >
-    </md-input-container>
-  </div>
 
-<div layout="column" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 5px;">
+<div flex-gt-xs="10" layout:"row" style="" >  
+  <md-input-container flex="100"  md-no-float class="md-block" style="color: #FFFFFF" >
+    <md-icon md-svg-src="./assets/icons/search.svg" ></md-icon>
+    <input ng-model="searchText" type="text" placeholder="Search"  >
+  </md-input-container>
+</div>
+
+<div layout="column" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 3px;">
+    <div ng-if="adminUser" layout="row" ng-controller="AdminCtrl" class="md-whiteframe-3dp" style="background-color:#FFFFFF; color: #000000; border-radius: 3px 3px 0px 0px ">
+      <!-- Admin toolbar -->        
+      <md-button ng-click="adminAdd.training()">Add Training</md-button>
+      <md-button ng-click="adminAdd.event()">Add Event</md-button>
+      <md-button ng-click="adminAdd.test()">Create Test</md-button>      
+    </div>
+
 
 
   <div flex-gt-xs="10" layout="column" ng-repeat="t in trainings | filter:searchText" ng-controller= "DialogCtrl" >
     <md-button flex ui-sref="trainingsinner({id : t.id})" layout-align="start start" style="float:left" >
       <div flex layout="row" class="media">
-        <div flex="10">
+        <div flex="10" layout-allign="center center">
           <img style="border-radius:8px; height:60px; width:auto" class="media-object" src="{{t.imgUrl}}" layout-align="start center">
         </div>
 

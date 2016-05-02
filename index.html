@@ -20,14 +20,14 @@
         </div>
         <div flex="33" layout="row" layout-align="center center">
           <h2 style="text-align: center">
-            <span>TRIM</span>
+            <span>TRIM / BETA</span>
           </h2>
         </div>    
         <div flex="33" layout="row" layout-align="end center">
           <md-button>Login</md-button>
-
-     
-
+          <md-checkbox flex="15" ng-model="adminUser">
+            admin
+          </md-checkbox>
         </div>    
       </div>
     </md-toolbar>
@@ -53,7 +53,7 @@
 
           <md-list-item style="background-color:{{ selectedItemCurrent[0].bcgColor }}">
             <md-button style="width:100%; font-weight:{{ selectedItemCurrent[0].fontweight }}; a:hover {color:#FFFFFF}"
-            ui-sref="news">
+            ui-sref="news" ng-click="selectContentItem(0)">
               <md-icon md-svg-src="./assets/icons/news.svg" ></md-icon></br>
               News
             </md-button>
@@ -61,7 +61,7 @@
 
           <md-list-item style="background-color:{{ selectedItemCurrent[1].bcgColor }}">
             <md-button style="width:100%; font-weight:{{ selectedItemCurrent[1].fontweight }}" 
-            ui-sref="trainings">
+            ui-sref="trainings" ng-click="selectContentItem(1)">
               <md-icon md-svg-src="./assets/icons/trainings.svg" ></md-icon></br>
               Trainings
             </md-button>
@@ -69,7 +69,7 @@
 
           <md-list-item style="background-color:{{ selectedItemCurrent[2].bcgColor }}">
             <md-button style="width:100%; font-weight:{{ selectedItemCurrent[2].fontweight }}"
-            ui-sref="tests">
+            ui-sref="tests" ng-click="selectContentItem(2)">
               <md-icon md-svg-src="./assets/icons/myTrainings.svg" ></md-icon></br>
               Tests
             </md-button>
@@ -77,7 +77,7 @@
 
           <md-list-item style="background-color:{{ selectedItemCurrent[3].bcgColor }}">
             <md-button style="width:100%; font-weight:{{ selectedItemCurrent[3].fontweight }}"
-            ui-sref="settings">
+            ui-sref="settings" ng-click="selectContentItem(3)">
               <md-icon md-svg-src="./assets/icons/settings.svg" ></md-icon></br>
               Settings
             </md-button>
@@ -87,12 +87,14 @@
       </md-sidenav>
     
 
-      <md-content ng-controller="ContentCtrl" flex id="content" class="md-padding" style="background-color:#424242" > 
+      <md-content ng-controller="ContentCtrl" flex id="content"  style="background-color:#424242" > 
 
-        <!-- <div flex layout="column" ng-include src="getContentSrc()"></div> -->
-        <div flex layout="column" ui-view></div>
+
+        <div flex layout="column" class="md-padding" ui-view></div>
         
       </md-content>
+    
+
     </div>
 
     <script src="./bower_components/angular/angular.js" type="text/javascript" ></script>
@@ -108,6 +110,8 @@
     <script src="controllers/TrainingDetailsCtrl.js" type="text/javascript" ></script>
     <script src="controllers/RegistrationCtrl.js" type="text/javascript" ></script>
     <script src="controllers/SubscribeCtrl.js" type="text/javascript" ></script>
+    <script src="controllers/AdminCtrl.js" type="text/javascript" ></script>
+    <script src="controllers/AddTrainingCtrl.js" type="text/javascript" ></script>
     <script src="controllers/configs/config.js" type="text/javascript" ></script>
     
    

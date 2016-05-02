@@ -1,5 +1,5 @@
 // Include the dependency upon ngMaterial - important !!
-var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui.router']);    
+var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui.router']);   
 
 // Dialog controller
         Trim.controller('DialogCtrl', function($scope, $mdDialog, $mdMedia, $rootScope,Training) {
@@ -172,6 +172,8 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
 
           Trim.controller('BodyCtrl',function($scope){
             $scope.adminUser = true;
+            $scope.$watch('$scope.adminUser', function(){
             console.log("admin has logged in");
+          });
           }
           );
