@@ -27,11 +27,9 @@
         <div flex="33" layout="row" layout-align="end center">
           <md-button ng-click="toggleLoginScreen()">Login</md-button>
           <notification-icon count="8" animation="bounce">
-            
             <md-button class="md-icon-button md-primary" aria-label="Right Notifications Bar" ng-click="openRightMenu()" >
               <md-icon md-svg-icon="./assets/icons/bell.svg" ></md-icon>
             </md-button>
-           
           </notification-icon>
         </div>    
       </div>
@@ -94,28 +92,84 @@
 
       <md-content ng-controller="ContentCtrl" flex id="content"  style="background-color:#424242" > 
 
+      <div flex layout="column" class="md-padding" ui-view></div>
 
-        <div flex layout="column" class="md-padding" ui-view></div>
-        
-      <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" style="background-color:#424242">
-        
-        <md-content ng-controller="NotificationsCtrl" layout-padding style="background-color:#424242">
-          <md-card ng-repeat="n in notifications" style="opacity: 1">
-            <span style="font-weight: bold; font-size: 15pt; padding-bottom: 10px;">{{n.header}}</span>
-            <span >{{n.body}}</span>
-            <md-button class="md-raised md-primary" aria-label="Action">
-             {{ n.action}}
-            </md-button>
-          </md-card> 
-          
-        </md-content>
+      </md-content>  
+
+      <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" style="background-color:#424242" layout-margin layout="column">
+        <md-tabs flex style="margin: 0">
+          <md-tab label="Notifications" disabled md-on-select="" md-on-deselect="">
+            <md-tab-label style="font-color: #FFFFFF; height: 100%">
+              <md-icon md-svg-icon="./assets/icons/bell.svg" ></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <md-content ng-controller="NotificationsCtrl" layout-padding style="background-color:#424242">
+                <md-card ng-repeat="n in notifications" style="opacity: 1">
+                  <span style="font-weight: bold; font-size: 15pt; padding-bottom: 10px;">{{n.header}}</span>
+                  <span >{{n.body}}</span>
+                  <md-button class="md-raised md-primary" aria-label="Action">
+                   {{ n.action}}
+                  </md-button>
+                </md-card> 
+              </md-content>
+            </md-tab-body>
+          </md-tab>
+          <md-tab label="Notifications" disabled md-on-select="" md-on-deselect="">
+            <md-tab-label style="font-color: #FFFFFF">
+              <md-icon md-svg-src="./assets/icons/new.svg" ></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <md-content ng-controller="NotificationsCtrl" layout-padding style="background-color:#424242">
+                <md-card ng-repeat="n in notifications" style="opacity: 1">
+                  <span style="font-weight: bold; font-size: 15pt; padding-bottom: 10px;">{{n.header}}</span>
+                  <span >{{n.body}}</span>
+                  <md-button class="md-raised md-primary" aria-label="Action">
+                   {{ n.action}}
+                  </md-button>
+                </md-card> 
+              </md-content>
+            </md-tab-body>
+          </md-tab>
+          <md-tab label="Notifications" disabled md-on-select="" md-on-deselect="">
+            <md-tab-label style="font-color: #FFFFFF">
+              <md-icon md-svg-src="./assets/icons/agenda.svg" ></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <md-content ng-controller="NotificationsCtrl" layout-padding style="background-color:#424242">
+                <md-card ng-repeat="n in notifications" style="opacity: 1">
+                  <span style="font-weight: bold; font-size: 15pt; padding-bottom: 10px;">{{n.header}}</span>
+                  <span >{{n.body}}</span>
+                  <md-button class="md-raised md-primary" aria-label="Action">
+                   {{ n.action}}
+                  </md-button>
+                </md-card> 
+              </md-content>
+            </md-tab-body>
+          </md-tab>
+          <md-tab label="Notifications" disabled md-on-select="" md-on-deselect="">
+            <md-tab-label style="font-color: #FFFFFF">
+              <md-icon md-svg-src="./assets/icons/warning.svg" ></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <md-content ng-controller="NotificationsCtrl" layout-padding style="background-color:#424242">
+                <md-card ng-repeat="n in notifications" style="opacity: 1">
+                  <span style="font-weight: bold; font-size: 15pt; padding-bottom: 10px;">{{n.header}}</span>
+                  <span >{{n.body}}</span>
+                  <md-button class="md-raised md-primary" aria-label="Action">
+                   {{ n.action}}
+                  </md-button>
+                </md-card> 
+              </md-content>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
       </md-sidenav>
       
 
-      </md-content>
+      
     
 
-    </div>
+    
 
     <script src="./bower_components/angular/angular.js" type="text/javascript" ></script>
     <script src="./bower_components/angular-ui-router/release/angular-ui-router.js" type="text/javascript" ></script>
