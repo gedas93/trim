@@ -4,9 +4,9 @@
 
     <div ng-if="adminUser" layout="row" ng-controller="AdminCtrl" class="md-whiteframe-3dp" style="background-color:#FFFFFF; color: #000000; border-radius: 3px 3px 0px 0px ">
       <!-- Admin toolbar -->        
-      <md-button ng-click="adminAdd.event()">Add Event</md-button>
-      <md-button ng-click="adminEdit.event()">Edit Events</md-button>
-      <md-button ng-click="adminEdit.training()">Edit training</md-button>      
+      <md-button ng-click="adminAdd.event(tr)">Add Event</md-button>
+      <md-button ng-click="adminEdit.event(tr.id)">Edit Events</md-button>
+      <md-button ng-click="adminEdit.training(tr.id)">Edit training</md-button>      
     </div>
 
     <div layout="row" class="md-padding">
@@ -54,9 +54,9 @@
       </tr>
       <tr ng-repeat="ev in events | filter: {trainingId: tr.id}">
         <td>{{ $index + 1 }}</td>
-        <td>{{ ev.startDate }}</td>
-        <td>VNO HQ Moscow Training Room</td>
-        <td>15 of 29</td>
+        <td>{{ formatDate(ev.startDate) }}</td>
+        <td>{{ ev.location }}</td>
+        <td>{{getAtendeeCount(ev.id)}} of {{ ev.atendees }}</td>
       </tr>
     </table>
 

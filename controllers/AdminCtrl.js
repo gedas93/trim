@@ -1,9 +1,8 @@
-Trim.controller('AdminCtrl', function($scope, $mdDialog, $mdMedia) {
+Trim.controller('AdminCtrl', function($scope, $mdDialog, $mdMedia, $rootScope) {
 	$scope.adminAdd = [];
 	$scope.adminEdit = [];
 
 	$scope.adminAdd.training = function(){
-		console.info("create training clicked");
 		$mdDialog.show({
     		controller : 'AddTrainingCtrl',
     		parent: angular.element(document.body),
@@ -12,8 +11,16 @@ Trim.controller('AdminCtrl', function($scope, $mdDialog, $mdMedia) {
 		})
 	}
 
-	$scope.adminAdd.event = function(){
-		console.info("create event clicked");
+	$scope.adminAdd.event = function(tr){
+		console.info("create event clicked " + tr.id);
+		$mdDialog.show({
+			controller : 'AddEventCtrl',
+			parent: angular.element(document.body),
+			templateUrl : './views/add-event.HTML',
+			fullscreen : false,
+			bindToController : true,
+			locals : {trainingInfo : tr}
+		})
 	}
 
 	$scope.adminAdd.test = function(){

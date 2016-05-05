@@ -36,7 +36,7 @@
           <label>Event</label>
           <md-select ng-model="registration.eventID">
             <md-option ng-repeat="ev in events | filter: {trainingId: TrainigId}" value="{{ev.id}}" ng-disabled="">
-              {{  ev.startDate  }}
+              {{ formatDate(ev.startDate) }}
             </md-option>
           </md-select>
         </md-input-container>

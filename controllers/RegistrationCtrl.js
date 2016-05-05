@@ -1,4 +1,4 @@
-Trim.controller('RegistrationCtrl', function($scope, $rootScope ,Training, $mdDialog, Employee, $q, Registration, Event) {
+Trim.controller('RegistrationCtrl', function($scope, $rootScope ,Training, $mdDialog, Employee, $q, Registration, Event, $filter) {
 	
 	Training.find({},function(res){
 		$scope.trainings = res;
@@ -45,7 +45,11 @@ Trim.controller('RegistrationCtrl', function($scope, $rootScope ,Training, $mdDi
 		console.log(sItem);
 	};
 
-	
+	$scope.formatDate = function(input) {
+    	if(input == null){return "";}
+    	var result = $filter('date')(input,'yyyy-MM-dd HH:mm');
+    	return result;
+    };
 
 	$scope.submitRegistration = function () {
 		$scope.registration.regDate = new Date();

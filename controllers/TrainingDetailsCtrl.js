@@ -1,7 +1,11 @@
-Trim.controller('TrainingDetailsCtrl', function($scope, $rootScope, Training, Event, $stateParams, $mdDialog) {
+Trim.controller('TrainingDetailsCtrl', function($scope, $rootScope, Training, Event, $stateParams, $mdDialog, $filter, Registration) {
 	
 	Training.find({},function(res){
 		$scope.trainings = res;
+	});
+
+	Registration.find({},function(res){
+		$scope.allRegistrations = res;
 	});
 
 	$scope.trainingId = $stateParams.id; // pagal sita id reiks issitraukt training objecta is DB
@@ -51,9 +55,23 @@ Trim.controller('TrainingDetailsCtrl', function($scope, $rootScope, Training, Ev
 
     Event.find({},function(res){
 		$scope.events = res;
-		console.log("Events found :" + $scope.events.length);
-		console.log($scope.events);
+		//console.log("Events found :" + $scope.events.length);
+		//console.log($scope.events);
 	});
 
+    $scope.formatDate = function(input) {
+    	if(input == null){return "";}
+    	var result = $filter('date')(input,'yyyy-MM-dd HH:mm');
+    	return result;
+    };
+
+    $scope.getAtendeeCount = function(event_id) {
+    	var result = 0;
+    	if (!$scope.allRegistrations)
+    		return result;
+    	var filtered = $filter('filter')($scope.allRegistrations, {eventID : event_id, status : "approved"});
+    	if (filtered) 
+    		return filtered.length;
+    };
 
 });

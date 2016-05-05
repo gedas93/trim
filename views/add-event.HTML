@@ -1,0 +1,36 @@
+<md-dialog md-is-fullscreen="true" aria-label="List dialog" style="width: 50%; " >
+  <md-toolbar md-whiteframe="8">
+    <div flex class="md-toolbar-tools" layout-align="space-between center" style="background-color:#E65100;">
+      <p>Create new Event</p>
+      <md-button class="md-icon-button" ng-click="closeDialog()">
+      	<md-icon md-svg-src="./assets/icons/close.svg" aria-label="Close"></md-icon>
+      </md-button>
+    </div>
+
+  </md-toolbar>
+  	<form ng-submit="adminAdd.submitEvent()">
+	  <md-dialog-content >
+	  	<div flex class="md-padding" layout="column">
+	  		<md-datepicker ng-model="adminAdd.newEvent.startDate" md-min-date="getDateNow()" md-placeholder="Date of event"></md-datepicker>
+	  		<md-input-container>
+	  			<label>Time</label>
+	  			<md-icon md-svg-src="./assets/icons/time.svg"></md-icon>
+	  			<input type="time" required ng-model="adminAdd.newEvent.startDate">
+	  		</md-input-container>
+	  		<md-input-container>
+	  			<label>Location</label>
+	  			<md-icon md-svg-src="./assets/icons/location.svg"></md-icon>
+	  			<input type="text" required ng-model="adminAdd.newEvent.location">
+	  		</md-input-container>
+	  		<md-input-container>
+	  			<label>Maximum ammount of attendees</label>
+	  			<md-icon md-svg-src="./assets/icons/people.svg"></md-icon>
+	  			<input type="number" required ng-model="adminAdd.newEvent.atendees">
+	  		</md-input-container>
+	  </md-dialog-content>
+		<md-dialog-actions>
+			<md-button ng-click="closeDialog()" class="md-raised">Cancel</md-button>
+			<md-button type="submit" class="md-raised md-warn">Submit</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

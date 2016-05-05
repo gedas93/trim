@@ -8,7 +8,7 @@
     </div>
 
   </md-toolbar>
-  	<form>
+  	<form ng-submit="adminAdd.submitTraining()">
 	  <md-dialog-content >
 	  	<div flex class="md-padding" layout="column">
 
@@ -97,5 +97,9 @@
 
 	    </div>
 	  </md-dialog-content>
+		<md-dialog-actions>
+			<md-button ng-click="closeDialog()" class="md-raised">Cancel</md-button>
+			<md-button type="submit" class="md-raised md-warn">Submit</md-button>
+		</md-dialog-actions>
 	</form>
 </md-dialog>
