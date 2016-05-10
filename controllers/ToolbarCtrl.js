@@ -1,5 +1,6 @@
-Trim.controller('ToolbarCtrl',function($scope, $mdDialog, $mdSidenav){
+Trim.controller('ToolbarCtrl',function($scope, $mdDialog, $mdSidenav, $rootScope, Registration, $filter){
  
+  $scope.notificationsCount = 0; 
   $scope.openLeftMenu = function() {
     $mdSidenav('left').toggle();
   };
@@ -10,5 +11,13 @@ Trim.controller('ToolbarCtrl',function($scope, $mdDialog, $mdSidenav){
 		templateUrl : './views/login.HTML'
 
     })
-  }
+  };
+
+  Registration.find({},function(res){
+      var filtered = $filter ('filter')(res,{status : null});
+      console.log ("filtered: " , filtered.lenght);
+      $scope.notificationsCount = filtered.lenght;
+  });
+
+
 });

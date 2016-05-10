@@ -1,4 +1,4 @@
-Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Registration, Training, $filter, Event){
+Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Registration, Training, $filter, Event, $timeout){
 	$scope.notifications = [
 		{"header" : "New registration", "body" : "Gediminas Valaitis registered for Aviacijos Techninins Reglamentavimas" , "action" : "Approve"},
 		{"header" : "Upcomming trainings", "body" : "Aviacijos Techninins Reglamentavimas occurs in 2 days" , "action" : "Open Event"},
@@ -11,11 +11,26 @@ Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Reg
 	];
 	var updateList = function() {
 		Registration.find({},function(res){
-			var filtered = $filter ('filter')(res,{status : null})
-			$scope.unapprovedRegistrations = filtered;
+			console.log("updateList: ", res);
+			var filtered = $filter ('filter')(res,{status : null});
+			$scope.unapprovedRegistrations = [];
+			$timeout(function(){
+				$scope.unapprovedRegistrations = filtered;
+				$rootScope.notificationsCount = filtered.lenght;
+			},0);
 		});
 	};
-	updateList();
+
+	var updateListCycle = function()
+	{
+		updateList();
+		if($rootScope.adminUser)
+		{
+			$timeout(updateListCycle, 10000);
+		}
+	}
+
+	updateListCycle();
 
 	Training.find({},function(res){
 		$scope.allTrainings = res;
@@ -34,14 +49,19 @@ Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Reg
 			return result;
 		if (tr) return tr[0].name;
 		};
-	$scope.ApproveRegistration = function(regId){
+	$scope.ApproveRegistration = function(reg){
 		// $scope.Reg = Registration.findById({ id : regId});
 		// $scope.Reg.status = 'approved';
 		// $scope.Reg.$save();
+		reg.status = "approved";
 		Registration.prototype$updateAttributes(
-		   { id: regId }, 
-		   { status: 'approved' });
-		updateList();
+		   { id: reg.id }, 
+		   { status: 'approved' },
+		   function(res){
+				updateList();
+		   });
+		
 	};
+	// $scope.$watch($scope.unapprovedRegistrations,updateList());
 	
 });

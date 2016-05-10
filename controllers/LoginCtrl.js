@@ -10,10 +10,10 @@ Trim.controller('LoginCtrl',function($scope, $mdDialog, $rootScope, User){
 			"password" : $scope.login.password
 		}, function(res) {
 			console.log("res", res);
-			$rootScope.isAdmin = true;
+			$rootScope.adminUser = true;
 		},function(res) {
 			console.log("error: res", res);
-			$rootScope.isAdmin = false;
+			$rootScope.adminUser = false;
 		});
 		$mdDialog.hide();
 	}

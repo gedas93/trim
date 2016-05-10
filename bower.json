@@ -1,0 +1,22 @@
+{
+  "name": "trim",
+  "description": "",
+  "main": "index.html",
+  "license": "ISC",
+  "homepage": "https://github.com/gedas93/trim",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.0.7",
+    "angular-notification-icons": "^0.4.3",
+    "angular-resource": "^1.5.5",
+    "angular-ui-router": "ui-router#^0.2.18",
+    "bootstrap": "^3.3.6",
+    "please-wait": "^0.0.5"
+  }
+}

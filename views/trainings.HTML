@@ -10,7 +10,7 @@
     <div ng-if="adminUser" layout="row" ng-controller="AdminCtrl" class="md-whiteframe-3dp" style="background-color:#FFFFFF; color: #000000; border-radius: 3px 3px 0px 0px ">
       <!-- Admin toolbar -->        
       <md-button ng-click="adminAdd.training()">Add Training</md-button>
-      <md-button ng-click="adminAdd.test()">Create Test</md-button>      
+      <md-button ng-disabled="true" ng-click="adminAdd.test()">Create Test</md-button>      
     </div>
 
 

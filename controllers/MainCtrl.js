@@ -151,13 +151,21 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
 
 //Side Navigation Controller
 
-          Trim.controller('BodyCtrl',function($scope, $rootScope, $mdSidenav){
-            $scope.adminUser = true;
-            $scope.$watch('$scope.adminUser', function(){
-            console.log("admin has logged in");
+          Trim.controller('BodyCtrl',function($scope, $rootScope, $mdSidenav, User){
+            var isAuth = User.isAuthenticated();
+            console.log("isAuth " , isAuth);
+            $rootScope.adminUser = isAuth;
             $scope.openRightMenu = function() {
               $mdSidenav('right').toggle();
             };
-          });
+            $scope.logout = function () {
+              User.logout(function(res){
+                $rootScope.adminUser = false;
+              },function(err){
+                $rootScope.adminUser = false;
+                console.log(err);
+              });
+            };
+            
           }
           );
