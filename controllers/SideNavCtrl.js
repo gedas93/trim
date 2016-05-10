@@ -1,11 +1,12 @@
-Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootScope, $mdSidenav) {
+Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootScope, $mdSidenav, $rootScope) {
 
     $rootScope.resetAllMenuItems = function () {
       $scope.selectedItemCurrent = [
         {refSrc:"/views/news.html", fontweight:"", bcgColor:""},
         {refSrc:"/views/trainings.html", fontweight:"", bcgColor:""},
         {refSrc:"/views/tests.html", fontweight:"", bcgColor:""},
-        {refSrc:"/views/settings.html", fontweight:"", bcgColor:""} 
+        {refSrc:"/views/settings.html", fontweight:"", bcgColor:""},
+        {refSrc:"/views/settings.html", fontweight:"", bcgColor:""}  
       ];
     };
     $rootScope.resetAllMenuItems();
@@ -17,7 +18,7 @@ Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootSco
       //console.log(item + " selected");
       $rootScope.resetAllMenuItems();
       $scope.selectedItemCurrent[item].fontweight = "bold";
-      $scope.selectedItemCurrent[item].bcgColor = "#1565C0";
+      $scope.selectedItemCurrent[item].bcgColor = $rootScope.theme.toolBar;
       $mdSidenav('left').toggle();
     }
     

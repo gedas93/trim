@@ -15,6 +15,21 @@ Trim.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "views/trainings.HTML",
       controller: 'DialogCtrl'
     })
+    .state('reports', {
+      url: "/reports",
+      templateUrl: "views/reports.HTML",
+      controller: 'ReportsCtrl'
+    })
+    .state('tests', {
+      url: "/tests",
+      templateUrl: "views/tests.HTML",
+      controller: 'TestsCtrl'
+    })
+    .state('settings', {
+      url: "/settings",
+      templateUrl: "views/settings.HTML",
+      controller: 'SettingsCtrl'
+    })
     .state('trainingsinner', {
       url: "/trainings/:id",
       templateUrl: "views/trainingDetails.HTML",

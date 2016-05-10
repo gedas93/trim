@@ -1,0 +1,51 @@
+<md-card flex ng-if="!adminUser">You have no power here</md-card>
+<div ng-controller="ReportsCtrl"  layout="column" ng-if="adminUser">
+	<div layout="row">
+		<md-card flex="33" class="md-padding">
+			<h3>Total registrations : {{ allRegistrations.length }} </h3></br>
+			some more info goes here
+		</md-card>
+		<md-card flex="66" class="md-padding" layout="column">
+			<div layout ="row">
+				<div flex="33" layout ="row">
+					<md-select class="md-raised" ng-model="filter.event" placeholder="Select Trainings">
+						<md-option ng-value="opt.id" ng-repeat="opt in allEvents">{{ opt.id }}</md-option>
+					</md-select>
+					<md-button ng-click="filter.clearEvent()">Clear</md-button>
+				</div>
+				<div flex="33" layout ="row">
+					<md-select ng-model="filter.event" placeholder="Select Event">
+						<md-option ng-value="opt.id" ng-repeat="opt in allEvents">{{ opt.id }}</md-option>
+					</md-select>
+					<md-button ng-click="filter.clearEvent()">Clear</md-button>
+				</div>
+				<div flex="33" layout ="row">
+					<md-select ng-model="filter.event" placeholder="Select Status">
+						<md-option ng-value="opt.id" ng-repeat="opt in allEvents">{{ opt.id }}</md-option>
+					</md-select>
+					<md-button ng-click="filter.clearEvent()">Clear</md-button>
+				</div>	
+			</div>
+		</md-card>
+	</div>
+	<md-card class="md-padding">
+		<table style="width: 100%">
+			<tr ng-class="'header'">
+				<td>Registration ID</td>
+				<td>Atendee's name</td>
+				<td>Department</td>
+				<td>Trainings</td>
+				<td>Date</td>
+				<td>Status</td>
+			</tr>
+			<tr ng-repeat="reg in allRegistrations | filter: {eventID : filter.event}" ng-class-odd="'odd'" ng-class-even="'even'">
+				<td>{{reg.id}}</td>
+				<td><a href="mailto:{{reg.email}}" >{{reg.name}} {{reg.surname}}</a></td>
+				<td>{{reg.department}}</td>
+				<td>{{reg.eventID}}</td>
+				<td>Date</td>
+				<td>{{reg.status ? reg.status : 'waiting'}}</td>
+			</tr>
+		</table>
+	</md-card>
+</div>

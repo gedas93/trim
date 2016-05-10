@@ -166,6 +166,12 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
                 console.log(err);
               });
             };
+            $rootScope.theme = {
+              toolBar: "#43A047",
+              sideNav: "#616161",
+              content: "#9E9E9E"
+            };
+            
             
           }
           );

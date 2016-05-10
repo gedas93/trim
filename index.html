@@ -4,7 +4,7 @@
     <link href="./bower_components/angular-material/angular-material.css" rel="stylesheet" />
     <link href="./views/customCSS/table.css" rel="stylesheet" />
     <link rel="stylesheet" href="./bower_components/angular-notification-icons/dist/angular-notification-icons.min.css">
-    <!-- <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!--   <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="./assets/styles/animate.css">
@@ -14,7 +14,7 @@
   <body layout="column" ng-controller="BodyCtrl"  class="inner" ng-view>
 
    
-    <md-toolbar ng-controller="ToolbarCtrl" md-whiteframe="8" style="background-color:#42A5F5">
+    <md-toolbar ng-controller="ToolbarCtrl" md-whiteframe="8" style="background-color:{{theme.toolBar}}">
       <div class="md-toolbar-tools" layout-wrap layout-sm="row">
         <div flex="33">
           <md-button class="md-icon-button md-primary" aria-label="Left Navigation Bar" ng-click="openLeftMenu()" hide-gt-md>
@@ -28,20 +28,30 @@
         </div>    
         <div flex="33" layout="row" layout-align="end center">
 
-          <md-button ng-if="!adminUser" ng-click="toggleLoginScreen()">Login</md-button>
-
-          <md-button ng-if="adminUser" ng-click="logout()">Logout</md-button>
-
-          <md-button ng-if="adminUser" class="md-icon-button md-primary" aria-label="Quick Reach" ng-click="" >
-              <md-icon md-svg-icon="./assets/icons/build.svg" ></md-icon>
-              <md-tooltip md-visible="false" md-direction="bottom" md-delay="1000">
-                Quick Actions
-              </md-tooltip>
+          <md-button ng-if="!adminUser" ng-click="toggleLoginScreen()" class="md-icon-button md-primary">
+          <md-icon md-svg-icon="./assets/icons/account.svg" ></md-icon>
+            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+              Login
+            </md-tooltip>
           </md-button>
 
+          <md-button ng-if="adminUser" class="md-icon-button md-primary" ng-click="logout()">
+            <md-icon md-svg-icon="./assets/icons/off.svg" ></md-icon>
+            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+              Logout
+            </md-tooltip>
+          </md-button>
+
+          <md-button ng-if="adminUser" class="md-icon-button md-primary" aria-label="Quick Reach" ng-click="$mdOpenMenu($event)" >
+            <md-icon md-svg-icon="./assets/icons/build.svg" ></md-icon>
+            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+              Quick Actions
+            </md-tooltip>
+          </md-button>
+            
           <md-button ng-if="adminUser" class="md-icon-button md-primary" aria-label="Right Notifications Bar" ng-click="openRightMenu()" >
             <md-icon md-svg-icon="./assets/icons/bell.svg" ></md-icon>
-            <md-tooltip md-visible="false" md-direction="bottom" md-delay="1000">
+            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
               Notifications
             </md-tooltip>
           </md-button>
@@ -61,9 +71,10 @@
         style="
         min-width: 50px !important;
         width: 20vw !important;
-        max-width: 150px !important;
-        background-color:#424242;
-        color: #FFFFFF;"
+        max-width: 100px !important;
+        background-color:{{theme.sideNav}};
+        color: #FFFFFF;
+        font-size: 5pt"
 
         
         >
@@ -93,7 +104,7 @@
             </md-button>
           </md-list-item>
 
-          <md-list-item style="background-color:{{ selectedItemCurrent[3].bcgColor }}">
+          <md-list-item style="background-color:{{ selectedItemCurrent[3].bcgColor }}" ng-if="adminUser">
             <md-button style="width:100%; font-weight:{{ selectedItemCurrent[3].fontweight }}"
             ui-sref="settings" ng-click="selectContentItem(3)">
               <md-icon md-svg-src="./assets/icons/settings.svg" ></md-icon></br>
@@ -101,11 +112,19 @@
             </md-button>
           </md-list-item>
 
+          <md-list-item style="background-color:{{ selectedItemCurrent[4].bcgColor }}" ng-if="adminUser">
+            <md-button style="width:100%; font-weight:{{ selectedItemCurrent[4].fontweight }}"
+            ui-sref="reports" ng-click="selectContentItem(4)">
+              <md-icon md-svg-src="./assets/icons/reports.svg" ></md-icon></br>
+              Reports
+            </md-button>
+          </md-list-item>
+
         </md-list>
       </md-sidenav>
     
 
-      <md-content ng-controller="ContentCtrl" flex id="content"  style="background-color:#424242" > 
+      <md-content ng-controller="ContentCtrl" flex id="content"  style="background-color:{{theme.content}}" > 
 
       <div flex layout="column" class="md-padding" ui-view></div>
 
@@ -113,7 +132,7 @@
 
       <div ng-controller="NotificationsCtrl">
         <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" style="background-color:#424242"  layout="column">
-          <md-tabs flex style="margin: 0">
+          <md-tabs flex style="margin: 0; overflow-y: hidden;">
             <md-tab label="Notifications" disabled md-on-select="" md-on-deselect="">
               <md-tab-label style="font-color: #FFFFFF; height: 100%">
                 <md-icon md-svg-icon="./assets/icons/bell.svg" ></md-icon>
@@ -195,8 +214,8 @@
     <script type="text/javascript">
             window.loading_screen = window.pleaseWait({
               logo: "./assets/img/loadingLogo.png",
-              backgroundColor: '#42A5F5',
-              loadingHtml: "<p class='loading-message' style='color:white'>It is never too late to learn</p><div></div>"
+              backgroundColor: '#43A047',
+              loadingHtml: "<p class='loading-message' style='font-size: 18pt;color:white'>Calling universe to set up things for you</p><div></div>"
             })
             {
               window.loading_screen.finish()
@@ -228,6 +247,9 @@
     <script src="controllers/LoginCtrl.js" type="text/javascript" ></script>
     <script src="controllers/NotificationsCtrl.js" type="text/javascript" ></script>
     <script src="controllers/AddEventCtrl.js" type="text/javascript" ></script>
+    <script src="controllers/TestsCtrl.js" type="text/javascript" ></script>
+    <script src="controllers/ReportsCtrl.js" type="text/javascript" ></script>
+    <script src="controllers/SettingsCtrl.js" type="text/javascript" ></script>
     <script src="controllers/pleaseWait.js" type="text/javascript" ></script>
     
 

@@ -1,8 +1,25 @@
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #E8F5E9;
     border-collapse: collapse;
     padding: 15px;
+    border-radius: 3px;
     
+}
+tr:hover {
+	background-color: #4CAF50;
+}
+.header{
+	background-color:#1B5E20;
+	font-weight: bold;
+	color: white;
+	
+
+}
+.odd {
+	background-color: #81C784;
+}
+.even {
+	background-color: #66BB6A;
 }
 /*md-content {
 	background-image: url("/assets/img/test.png");

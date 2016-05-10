@@ -11,12 +11,11 @@ Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Reg
 	];
 	var updateList = function() {
 		Registration.find({},function(res){
-			console.log("updateList: ", res);
+			//console.log("updateList: ", res);
 			var filtered = $filter ('filter')(res,{status : null});
 			$scope.unapprovedRegistrations = [];
 			$timeout(function(){
 				$scope.unapprovedRegistrations = filtered;
-				$rootScope.notificationsCount = filtered.lenght;
 			},0);
 		});
 	};
