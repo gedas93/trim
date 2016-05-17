@@ -151,7 +151,7 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
 
 //Side Navigation Controller
 
-          Trim.controller('BodyCtrl',function($scope, $rootScope, $mdSidenav, User){
+          Trim.controller('BodyCtrl',function($scope, $rootScope, $mdSidenav, User, $mdToast){
             var isAuth = User.isAuthenticated();
             console.log("isAuth " , isAuth);
             $rootScope.adminUser = isAuth;
@@ -167,11 +167,15 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
               });
             };
             $rootScope.theme = {
-              toolBar: "#43A047",
-              sideNav: "#616161",
-              content: "#9E9E9E"
+              toolBar: "#455A64",
+              sideNav: "#455A64",
+              content: "#607D8B",
+              loginHeader: "#4527A0",
+              loginBody: "#78909C"
             };
-            
+            $rootScope.loginToast = function () {
+              $mdToast.show($mdToast.simple({position: 'top right'}).textContent('You have successfuly logged in'));
+            };
             
           }
           );

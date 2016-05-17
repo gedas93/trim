@@ -46,13 +46,13 @@
     </div>
 
     <table style="width: 100%;" ng-if="plannedEvent(tr.id)" >
-      <tr style= "font-weight: bold;">
+      <tr ng-class="'header'" style= "font-weight: bold;">
         <td>No.</td>
         <td>Event Date</td>
         <td>Location</td>
         <td>Atendees</td>
       </tr>
-      <tr ng-repeat="ev in events | filter: {trainingId: tr.id}">
+      <tr ng-class-even="'even'" ng-class-odd="'odd'" ng-repeat="ev in events | filter: {trainingId: tr.id}">
         <td>{{ $index + 1 }}</td>
         <td>{{ formatDate(ev.startDate) }}</td>
         <td>{{ ev.location }}</td>

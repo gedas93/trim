@@ -61,6 +61,6 @@ Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Reg
 		   });
 		
 	};
-	// $scope.$watch($scope.unapprovedRegistrations,updateList());
+	
 	
 });

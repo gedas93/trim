@@ -1,6 +1,7 @@
 <html ng-app = "Trim">
 
   <head>
+    <title>TRIM_v0.5.17</title>
     <link href="./bower_components/angular-material/angular-material.css" rel="stylesheet" />
     <link href="./views/customCSS/table.css" rel="stylesheet" />
     <link rel="stylesheet" href="./bower_components/angular-notification-icons/dist/angular-notification-icons.min.css">
@@ -15,18 +16,41 @@
 
    
     <md-toolbar ng-controller="ToolbarCtrl" md-whiteframe="8" style="background-color:{{theme.toolBar}}">
-      <div class="md-toolbar-tools" layout-wrap layout-sm="row">
+      <div class="md-toolbar-tools" layout-wrap layout-sm="row" >
         <div flex="33">
           <md-button class="md-icon-button md-primary" aria-label="Left Navigation Bar" ng-click="openLeftMenu()" hide-gt-md>
             <md-icon md-svg-icon="./assets/icons/leftMenu.svg"></md-icon>
           </md-button>
+          <span>SMART / {{$state.current.data.title}}</span>
         </div>
-        <div flex="33" layout="row" layout-align="center center">
+        <div flex="33" layout="row" layout-align="center center" ng-if="!showSearch">
           <h2 style="text-align: center">
             <span>TRIM / BETA</span>
           </h2>
+        </div>
+        <div flex="33" layout="row" layout-align="center end" ng-if="showSearch">
+            
+            <md-autocomplete flex placeholder="Search Trainings, Tests, Lectors" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in allShortcuts" md-item-text="item.name">
+              <md-item-template>
+                <span layout-align="start stretch" ng-click="http://google.com">
+                  <strong>{{item.name}}</strong><div style="float:right; color: green">{{item.type}}</div>
+                </span>
+              </md-item-template>
+              <md-not-found>
+                No Matches Found.
+              </md-not-found>
+            </md-autocomplete>
+            
         </div>    
         <div flex="33" layout="row" layout-align="end center">
+
+          <md-button ng-click="switchSearchView()" class="md-icon-button md-primary">
+          <md-icon md-svg-icon="./assets/icons/search.svg" ng-if="!showSearch"></md-icon>
+          <md-icon md-svg-icon="./assets/icons/close.svg" ng-if="showSearch"></md-icon>
+            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+              Search
+            </md-tooltip>
+          </md-button>
 
           <md-button ng-if="!adminUser" ng-click="toggleLoginScreen()" class="md-icon-button md-primary">
           <md-icon md-svg-icon="./assets/icons/account.svg" ></md-icon>
@@ -42,7 +66,7 @@
             </md-tooltip>
           </md-button>
 
-          <md-button ng-if="adminUser" class="md-icon-button md-primary" aria-label="Quick Reach" ng-click="$mdOpenMenu($event)" >
+          <md-button ng-if="adminUser" class="md-icon-button md-primary" aria-label="Quick Reach" ng-click="toggleQuickSettings()" >
             <md-icon md-svg-icon="./assets/icons/build.svg" ></md-icon>
             <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
               Quick Actions
@@ -58,6 +82,7 @@
           
         </div>    
       </div>
+      
     </md-toolbar>
 
     <div flex layout = "row">
@@ -124,7 +149,7 @@
       </md-sidenav>
     
 
-      <md-content ng-controller="ContentCtrl" flex id="content"  style="background-color:{{theme.content}}" > 
+      <md-content ng-controller="ContentCtrl" flex id="content toast-container" md-whiteframe="8" style="background-color:{{theme.content}}" > 
 
       <div flex layout="column" class="md-padding" ui-view></div>
 
@@ -251,7 +276,7 @@
     <script src="controllers/ReportsCtrl.js" type="text/javascript" ></script>
     <script src="controllers/SettingsCtrl.js" type="text/javascript" ></script>
     <script src="controllers/pleaseWait.js" type="text/javascript" ></script>
-    
+    <script src="controllers/quickSettingsCtrl.js" type="text/javascript" ></script>
 
     <script src="controllers/configs/config.js" type="text/javascript" ></script>
 

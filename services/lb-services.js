@@ -11,7 +11,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
 (function(window, angular, undefined) {'use strict';
 
-var urlBase = "http://gv:3000/api";
+var urlBase = "http://192.168.1.196:3000/api";
 var authHeader = 'authorization';
 
 function getHost(url) {
@@ -4512,6 +4512,598 @@ module.factory(
 
 /**
  * @ngdoc object
+ * @name lbServices.Registration
+ * @header lbServices.Registration
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Registration` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "Registration",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/registration/:id",
+      { 'id': '@id' },
+      {
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#create
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/registration",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#createMany
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/registration",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#upsert
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/registration",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#exists
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/registration/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#findById
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/registration/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#find
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/registration",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#findOne
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/registration/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#updateAll
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/registration/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#deleteById
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/registration/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#count
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/registration/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#prototype$updateAttributes
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/registration/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#createChangeStream
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/registration/change-stream",
+          method: "POST"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#updateOrCreate
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#update
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#destroyById
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Registration#removeById
+         * @methodOf lbServices.Registration
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Registration` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.Registration#modelName
+    * @propertyOf lbServices.Registration
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `Registration`.
+    */
+    R.modelName = "Registration";
+
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
  * @name lbServices.Test
  * @header lbServices.Test
  * @object
@@ -5104,13 +5696,13 @@ module.factory(
 
 /**
  * @ngdoc object
- * @name lbServices.Registration
- * @header lbServices.Registration
+ * @name lbServices.RegDetails
+ * @header lbServices.RegDetails
  * @object
  *
  * @description
  *
- * A $resource object for interacting with the `Registration` model.
+ * A $resource object for interacting with the `RegDetails` model.
  *
  * ## Example
  *
@@ -5120,17 +5712,17 @@ module.factory(
  *
  */
 module.factory(
-  "Registration",
+  "RegDetails",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/registration/:id",
+      urlBase + "/RegDetails/:id",
       { 'id': '@id' },
       {
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#create
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#create
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5157,18 +5749,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "create": {
-          url: urlBase + "/registration",
+          url: urlBase + "/RegDetails",
           method: "POST"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#createMany
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#createMany
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5195,19 +5787,19 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "createMany": {
           isArray: true,
-          url: urlBase + "/registration",
+          url: urlBase + "/RegDetails",
           method: "POST"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#upsert
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#upsert
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5234,18 +5826,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "upsert": {
-          url: urlBase + "/registration",
+          url: urlBase + "/RegDetails",
           method: "PUT"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#exists
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#exists
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5270,14 +5862,14 @@ module.factory(
          *  - `exists` – `{boolean=}` - 
          */
         "exists": {
-          url: urlBase + "/registration/:id/exists",
+          url: urlBase + "/RegDetails/:id/exists",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#findById
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#findById
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5301,18 +5893,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "findById": {
-          url: urlBase + "/registration/:id",
+          url: urlBase + "/RegDetails/:id",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#find
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#find
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5334,19 +5926,19 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "find": {
           isArray: true,
-          url: urlBase + "/registration",
+          url: urlBase + "/RegDetails",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#findOne
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#findOne
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5368,18 +5960,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "findOne": {
-          url: urlBase + "/registration/findOne",
+          url: urlBase + "/RegDetails/findOne",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#updateAll
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#updateAll
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5406,14 +5998,14 @@ module.factory(
          * The number of instances updated
          */
         "updateAll": {
-          url: urlBase + "/registration/update",
+          url: urlBase + "/RegDetails/update",
           method: "POST"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#deleteById
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#deleteById
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5435,18 +6027,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "deleteById": {
-          url: urlBase + "/registration/:id",
+          url: urlBase + "/RegDetails/:id",
           method: "DELETE"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#count
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#count
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5471,14 +6063,14 @@ module.factory(
          *  - `count` – `{number=}` - 
          */
         "count": {
-          url: urlBase + "/registration/count",
+          url: urlBase + "/RegDetails/count",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#prototype$updateAttributes
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#prototype$updateAttributes
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5504,18 +6096,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/registration/:id",
+          url: urlBase + "/RegDetails/:id",
           method: "PUT"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#createChangeStream
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#createChangeStream
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5545,7 +6137,7 @@ module.factory(
          *  - `changes` – `{ReadableStream=}` - 
          */
         "createChangeStream": {
-          url: urlBase + "/registration/change-stream",
+          url: urlBase + "/RegDetails/change-stream",
           method: "POST"
         },
       }
@@ -5555,8 +6147,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#updateOrCreate
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#updateOrCreate
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5583,15 +6175,15 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         R["updateOrCreate"] = R["upsert"];
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#update
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#update
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5621,8 +6213,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#destroyById
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#destroyById
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5644,15 +6236,15 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         R["destroyById"] = R["deleteById"];
 
         /**
          * @ngdoc method
-         * @name lbServices.Registration#removeById
-         * @methodOf lbServices.Registration
+         * @name lbServices.RegDetails#removeById
+         * @methodOf lbServices.RegDetails
          *
          * @description
          *
@@ -5674,7 +6266,7 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Registration` object.)
+         * This usually means the response is a `RegDetails` object.)
          * </em>
          */
         R["removeById"] = R["deleteById"];
@@ -5682,13 +6274,13 @@ module.factory(
 
     /**
     * @ngdoc property
-    * @name lbServices.Registration#modelName
-    * @propertyOf lbServices.Registration
+    * @name lbServices.RegDetails#modelName
+    * @propertyOf lbServices.RegDetails
     * @description
     * The name of the model represented by this $resource,
-    * i.e. `Registration`.
+    * i.e. `RegDetails`.
     */
-    R.modelName = "Registration";
+    R.modelName = "RegDetails";
 
 
     return R;

@@ -1,50 +1,64 @@
 <md-card flex ng-if="!adminUser">You have no power here</md-card>
 <div ng-controller="ReportsCtrl"  layout="column" ng-if="adminUser">
-	<div layout="row">
-		<md-card flex="33" class="md-padding">
-			<h3>Total registrations : {{ allRegistrations.length }} </h3></br>
-			some more info goes here
-		</md-card>
-		<md-card flex="66" class="md-padding" layout="column">
-			<div layout ="row">
+	<div layout="column">
+		<md-card >
+			<md-toolbar class="md-padding" >
+				<div class="md-toolbar-tools">
+					Total registrations : {{ allRegistrations.length }}
+					<md-button  ng-click="showFilter()" class="md-icon-button md-primary">
+			          <md-icon md-svg-icon="./assets/icons/search.svg" ></md-icon>
+			            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+			              Filter
+			            </md-tooltip>
+			        </md-button>
+		        </div>
+			</md-toolbar>
+			
+		
+		<div layout="column" ng-if="filterVisibility" ng-class="">
+			<div layout ="row" class="md-padding">
 				<div flex="33" layout ="row">
-					<md-select class="md-raised" ng-model="filter.event" placeholder="Select Trainings">
-						<md-option ng-value="opt.id" ng-repeat="opt in allEvents">{{ opt.id }}</md-option>
+					<md-select class="md-raised" ng-model="filter.training" placeholder="Select Trainings">
+						<md-option ng-value="opt" ng-repeat="opt in allTrainings">{{ opt.name }}</md-option>
 					</md-select>
-					<md-button ng-click="filter.clearEvent()">Clear</md-button>
+					<md-button ng-click="filter.clear(1)">Clear</md-button>
 				</div>
 				<div flex="33" layout ="row">
-					<md-select ng-model="filter.event" placeholder="Select Event">
-						<md-option ng-value="opt.id" ng-repeat="opt in allEvents">{{ opt.id }}</md-option>
+					<md-select ng-model="filter.event" placeholder="Select Event" ng-disabled="!filter.training">
+						<md-option ng-value="opt.id" ng-repeat="opt in filter.training.events">{{ opt.startDate }}</md-option>
 					</md-select>
-					<md-button ng-click="filter.clearEvent()">Clear</md-button>
+					<md-button ng-click="filter.clear(2)">Clear</md-button>
 				</div>
 				<div flex="33" layout ="row">
-					<md-select ng-model="filter.event" placeholder="Select Status">
-						<md-option ng-value="opt.id" ng-repeat="opt in allEvents">{{ opt.id }}</md-option>
+					<md-select ng-model="filter.status" placeholder="Select Status">
+						<md-option ng-value="" >All</md-option>
+						<md-option ng-value="null" >Unapproved only</md-option>
+						<md-option ng-value="approved" >Approved only</md-option>
 					</md-select>
-					<md-button ng-click="filter.clearEvent()">Clear</md-button>
 				</div>	
 			</div>
+		</div>
 		</md-card>
 	</div>
 	<md-card class="md-padding">
 		<table style="width: 100%">
 			<tr ng-class="'header'">
-				<td>Registration ID</td>
+				<td>ID</td>
 				<td>Atendee's name</td>
 				<td>Department</td>
 				<td>Trainings</td>
 				<td>Date</td>
+				<td>Location</td>
 				<td>Status</td>
 			</tr>
-			<tr ng-repeat="reg in allRegistrations | filter: {eventID : filter.event}" ng-class-odd="'odd'" ng-class-even="'even'">
-				<td>{{reg.id}}</td>
-				<td><a href="mailto:{{reg.email}}" >{{reg.name}} {{reg.surname}}</a></td>
-				<td>{{reg.department}}</td>
-				<td>{{reg.eventID}}</td>
-				<td>Date</td>
-				<td>{{reg.status ? reg.status : 'waiting'}}</td>
+			<tr ng-repeat="reg in allRegistrations | filter: {eventId : filter.event, trainId: filter.training.id}" ng-class-odd="'odd'" ng-class-even="'even'">
+				<td>#{{reg.id}}</td>
+				<td><a href="mailto:{{reg.atEmail}}" >{{reg.atName}} {{reg.atSurname}}</a></td>
+				<td>{{reg.Department}}</td>
+				<td>{{reg.trainName}}</td>
+				<td>{{reg.eventDate}}</td>
+				<td>{{reg.location}}</td>
+				<td>{{reg.regStatus ? reg.regStatus : 'waiting'}}</td>
 			</tr>
 		</table>
 	</md-card>

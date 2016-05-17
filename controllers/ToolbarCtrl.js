@@ -1,6 +1,5 @@
 Trim.controller('ToolbarCtrl',function($scope, $mdDialog, $mdSidenav, $rootScope, Registration, $filter){
  
-  $scope.notificationsCount = 0; 
   $scope.openLeftMenu = function() {
     $mdSidenav('left').toggle();
   };
@@ -9,15 +8,22 @@ Trim.controller('ToolbarCtrl',function($scope, $mdDialog, $mdSidenav, $rootScope
 		controller : 'LoginCtrl',
 		parent: angular.element(document.body),
 		templateUrl : './views/login.HTML'
-
     })
   };
-
-  Registration.find({},function(res){
-      var filtered = $filter ('filter')(res,{status : null});
-      console.log ("filtered: " , filtered.lenght);
-      $scope.notificationsCount = filtered.lenght;
-  });
-
+  $scope.toggleQuickSettings = function (){
+    $mdDialog.show({
+    controller : 'QuickSettingsCtrl',
+    parent: angular.element(document.body),
+    templateUrl : './views/quick-settings.HTML'
+    })
+  };
+  $scope.showSearch = false;
+  $scope.switchSearchView = function () {
+     $scope.showSearch = !$scope.showSearch; 
+  };
+  $scope.allShortcuts = [
+      {name: "Vienas", type: "Training", link: "aa"},
+      {name: "Du", type: "Test", link: "bb"},
+    ];
 
 });

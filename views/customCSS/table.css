@@ -1,25 +1,31 @@
 table, th, td {
-    border: 1px solid #E8F5E9;
+    border: 0px solid black;
     border-collapse: collapse;
     padding: 15px;
-    border-radius: 3px;
+    border-radius: 0px;
     
 }
+tr {
+	border: 1px solid #E0E0E0;
+}
 tr:hover {
-	background-color: #4CAF50;
+	background-color: #E0E0E0;
 }
 .header{
-	background-color:#1B5E20;
+	background-color:#757575;
 	font-weight: bold;
-	color: white;
+	color: #E0E0E0;
 	
 
 }
+.header:hover{
+	background-color:#757575;
+}
 .odd {
-	background-color: #81C784;
+	background-color: #FAFAFA;
 }
 .even {
-	background-color: #66BB6A;
+	background-color: #F5F5F5;
 }
 /*md-content {
 	background-image: url("/assets/img/test.png");

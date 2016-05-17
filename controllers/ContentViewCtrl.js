@@ -8,6 +8,7 @@ Trim.controller('ContentCtrl', function ($scope, $rootScope, Training){
 
   Training.find({},function(res){
      $scope.trainings = res;
+  
   });
 
   // $scope.showTrainingDetails = function (training_id) {
