@@ -1,4 +1,4 @@
-Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Registration, Training, $filter, Event, $timeout){
+Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Registration, Training, $filter, Event, $timeout, $mdDialog){
 	$scope.notifications = [
 		{"header" : "New registration", "body" : "Gediminas Valaitis registered for Aviacijos Techninins Reglamentavimas" , "action" : "Approve"},
 		{"header" : "Upcomming trainings", "body" : "Aviacijos Techninins Reglamentavimas occurs in 2 days" , "action" : "Open Event"},
@@ -11,6 +11,7 @@ Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Reg
 	];
 	var updateList = function() {
 		Registration.find({},function(res){
+			$scope.allRegistrations = res;
 			//console.log("updateList: ", res);
 			var filtered = $filter ('filter')(res,{status : null});
 			$scope.unapprovedRegistrations = [];
@@ -61,6 +62,21 @@ Trim.controller('NotificationsCtrl',function($scope, $rootScope, $mdSidenav, Reg
 		   });
 		
 	};
-	
+	$scope.getAttendeeCount = function(eid) {
+		var result = $filter('filter')($scope.allRegistrations,{eventID: eid});
+		if(result)
+			return result.length;
+	};
+	$scope.agendaClick = function(eObj) {
+		$mdSidenav('right').toggle();
+		$mdDialog.show({
+			controller : 'EventInfoCtrl',
+			parent: angular.element(document.body),
+			templateUrl : './views/event-info.HTML',
+			fullscreen : false,
+			bindToController : true,
+			locals : {CurrentEvent : eObj}
+		})
+	}; 
 	
 });

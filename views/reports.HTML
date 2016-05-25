@@ -1,12 +1,12 @@
 <md-card flex ng-if="!adminUser">You have no power here</md-card>
 <div ng-controller="ReportsCtrl"  layout="column" ng-if="adminUser">
 	<div layout="column">
-		<md-card >
-			<md-toolbar class="md-padding" >
-				<div class="md-toolbar-tools">
+		<md-card class="md-whiteframe-z3">
+			<md-toolbar style="background-color:{{theme.accent}}">
+				<div class="md-toolbar-tools" layout-align="space-between center">
 					Total registrations : {{ allRegistrations.length }}
 					<md-button  ng-click="showFilter()" class="md-icon-button md-primary">
-			          <md-icon md-svg-icon="./assets/icons/search.svg" ></md-icon>
+			          <md-icon md-svg-icon="./assets/icons/filter.svg" ></md-icon>
 			            <md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
 			              Filter
 			            </md-tooltip>
@@ -15,7 +15,7 @@
 			</md-toolbar>
 			
 		
-		<div layout="column" ng-if="filterVisibility" ng-class="">
+		<div layout="column" ng-if="filterVisibility" ng-class="reportsFilter">
 			<div layout ="row" class="md-padding">
 				<div flex="33" layout ="row">
 					<md-select class="md-raised" ng-model="filter.training" placeholder="Select Trainings">
@@ -31,7 +31,7 @@
 				</div>
 				<div flex="33" layout ="row">
 					<md-select ng-model="filter.status" placeholder="Select Status">
-						<md-option ng-value="" >All</md-option>
+						<md-option ng-value="">All</md-option>
 						<md-option ng-value="null" >Unapproved only</md-option>
 						<md-option ng-value="approved" >Approved only</md-option>
 					</md-select>
@@ -40,7 +40,20 @@
 		</div>
 		</md-card>
 	</div>
-	<md-card class="md-padding">
+	<md-card class="md-padding md-whiteframe-z3" >
+		<md-fab-speed-dial md-direction="up" class="md-fling" style="position:fixed; bottom:15px; right:15px" md-open="false">
+		  <md-fab-trigger>
+		    <md-button class="md-fab" aria-label="Menu" style="background-color:{{theme.accent}}"><md-icon md-svg-icon="./assets/icons/more.svg"></md-icon></md-button>
+		  </md-fab-trigger>
+		  <md-fab-actions>
+		    <md-button class="md-icon-button" aria-label="Add User" style="background-color:{{theme.accent}}">
+		      <md-icon md-svg-icon="./assets/icons/more.svg"></md-icon>
+		    </md-button>
+		    <md-button class="md-icon-button" aria-label="Add Group" style="background-color:{{theme.accent}}">
+		      <md-icon md-svg-icon="./assets/icons/more.svg"></md-icon>
+		    </md-button>
+		  </md-fab-actions>
+		</md-fab-speed-dial>
 		<table style="width: 100%">
 			<tr ng-class="'header'">
 				<td>ID</td>
@@ -51,7 +64,7 @@
 				<td>Location</td>
 				<td>Status</td>
 			</tr>
-			<tr ng-repeat="reg in allRegistrations | filter: {eventId : filter.event, trainId: filter.training.id}" ng-class-odd="'odd'" ng-class-even="'even'">
+			<tr ng-repeat="reg in allRegistrations | filter: {eventId : filter.event, trainId: filter.training.id, regStatus: filter.status}" ng-class-odd="'odd'" ng-class-even="'even'">
 				<td>#{{reg.id}}</td>
 				<td><a href="mailto:{{reg.atEmail}}" >{{reg.atName}} {{reg.atSurname}}</a></td>
 				<td>{{reg.Department}}</td>
@@ -62,4 +75,5 @@
 			</tr>
 		</table>
 	</md-card>
+	
 </div>

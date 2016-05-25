@@ -4,8 +4,6 @@ Trim.controller('LoginCtrl',function($scope, $mdDialog, $rootScope, User){
 		$mdDialog.hide();
 	};
 	$scope.loginAction = function () {
-		console.log("user submited login credentials");
-		console.info($scope.login);
 		User.login({
 			"email" : $scope.login.username,
 			"password" : $scope.login.password

@@ -1,0 +1,30 @@
+<md-dialog  aria-label="List dialog" style="" >
+  <md-toolbar md-whiteframe="8">
+    <div flex class="md-toolbar-tools" layout-align="space-between center" style="background-color:{{theme.accent}}">
+      <p>Event Info</p>
+      <md-button class="md-icon-button" ng-click="closeDialog()">
+      	<md-icon md-svg-src="./assets/icons/close.svg" aria-label="Close"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+	
+	<table style="width: 100%;"  >
+      <tr ng-class="'header'" style= "font-weight: bold;">
+        <td>No.</td>
+        <td>Event Date</td>
+        <td>Registration Date</td>
+        <td>Department</td>
+        <td>Atendees</td>
+      </tr>
+      <tr ng-class-even="'even'" ng-class-odd="'odd'" ng-repeat="cr in currRegistrations ">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ cr.name }} {{ cr.surname }}</td>
+        <td>{{ cr.regDate | date : 'MMM dd H:mm'}}</td>
+        <td>{{ cr.department }}</td>
+        <td>{{ cr.status ? cr.status : 'pending'}}</td>
+      </tr>
+    </table>
+  </md-dialog-content>
+</md-dialog>
+

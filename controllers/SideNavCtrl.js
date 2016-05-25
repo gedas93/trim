@@ -17,8 +17,8 @@ Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootSco
     $rootScope.selectContentItem = function(item) {
       //console.log(item + " selected");
       $rootScope.resetAllMenuItems();
-      $scope.selectedItemCurrent[item].fontweight = "bold";
-      $scope.selectedItemCurrent[item].bcgColor = $rootScope.theme.toolBar;
+      $scope.selectedItemCurrent[item].fontweight = "";
+      $scope.selectedItemCurrent[item].bcgColor = $rootScope.theme.accent;
       $mdSidenav('left').toggle();
     }
     

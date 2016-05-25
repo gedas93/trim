@@ -17,6 +17,7 @@ Trim.controller('ReportsCtrl', function ($scope, $rootScope, Training, Registrat
 		$scope.allTrainings = res;
 	});
 	$scope.filter = {};
+	// $scope.filter.status = null;
 	$scope.filter.clear = function(caseId){
 		console.log(caseId);
 		switch (caseId) {

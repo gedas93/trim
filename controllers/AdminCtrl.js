@@ -27,4 +27,15 @@ Trim.controller('AdminCtrl', function($scope, $mdDialog, $mdMedia, $rootScope) {
 		console.info("create test clicked");
 	}
 	
+	$scope.adminEdit.trainingInfo = function (tr) {
+		console.info("create event clicked " + tr.id);
+		$mdDialog.show({
+			controller : 'EditTrainingCtrl',
+			parent: angular.element(document.body),
+			templateUrl : './views/edit-training.HTML',
+			fullscreen : false,
+			bindToController : true,
+			locals : {trainingInfo : tr}
+		})
+	}
 });

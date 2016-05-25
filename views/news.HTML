@@ -1,11 +1,27 @@
-<div >
-	<md-card layout-align="center center">
-		<img src="./assets/img/newsPictures/class.jpeg">
-		<h1>Welcome to TRIM</h1>
-	</md-card>
+<div style="background-image: url(./assets/img/newsPictures/class.jpeg); background-size: 100% auto; background-repeat: no-repeat;">
+
+	
+	<md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display" style="margin-top:60px; margin-bottom:60px">
+	  <md-item-template>
+	  	<span md-highlight-text="searchText">{{ item.display }}</span>
+	  </md-item-template>
+	  <md-not-found>
+	  	No Matches Found.
+	  </md-not-found>
+	</md-autocomplete>
 	<md-card>
 		<md-card-content>
-			<h2>TRIM BETA v0.5.5</h2>
+			<h2>SMART BETA v0.5.25 (powered by TRIM engine)</h2>
+			<p>TRIM has been renamed to SMART. </p>
+		</md-card-content>
+		<div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">
+		   <md-button class="md-raised">Read more</md-button>
+		 </div>
+	</md-card>
+
+	<md-card>
+		<md-card-content>
+			<h2>TRIM BETA v0.5.18 (powered by TRIM-CORE engine)</h2>
 			<p>Dear user, this is beta version of training registration system (dev name : TRIM). Currently none of functionality is vadilated. </p>
 		</md-card-content>
 		<div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">

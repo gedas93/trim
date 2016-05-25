@@ -1,4 +1,4 @@
-<div ng-controller="TrainingDetailsCtrl" >
+<div ng-controller="TrainingDetailsCtrl" class="md-padding">
 
   <div layout="column" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 3px;">
 
@@ -6,7 +6,7 @@
       <!-- Admin toolbar -->        
       <md-button ng-click="adminAdd.event(tr)">Add Event</md-button>
       <md-button ng-click="adminEdit.event(tr.id)">Edit Events</md-button>
-      <md-button ng-click="adminEdit.training(tr.id)">Edit training</md-button>      
+      <md-button ng-click="adminEdit.trainingInfo(tr)">Edit training</md-button>      
     </div>
 
     <div layout="row" class="md-padding">
@@ -31,8 +31,8 @@
           <md-button class="md-raised md-warn" ng-disabled="!plannedEvent(tr.id)" ng-click="showRegistrationDialog(tr.id)">Register ({{ tr.price }} Eur)</md-button>
           <md-button class="md-raised md-primary" ng-disabled="true" >Take a test !</md-button>
         </div>
-        <div layout-align="center center">
-          <img src="{{ tr.imgUrl }}" style="width: 50%; height: auto; border-radius: 10px; padding: 0px;"> 
+        <div layout-align="center center" md-padding>
+          <img src="{{ tr.imgUrl }}" style="width: 50%; height: auto; border-radius: 10px;"> 
         </div>
       </div>
         

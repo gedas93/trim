@@ -12,14 +12,14 @@ tr:hover {
 	background-color: #E0E0E0;
 }
 .header{
-	background-color:#757575;
+	background-color:#90A4AE;
 	font-weight: bold;
-	color: #E0E0E0;
+	color: #FFFFFF;
 	
 
 }
 .header:hover{
-	background-color:#757575;
+	background-color:#90A4AE;
 }
 .odd {
 	background-color: #FAFAFA;
@@ -32,3 +32,11 @@ tr:hover {
 	background-size: auto 25%;
 	background-repeat: repeat-x;
 }*/
+
+.reportsFilter.ng-enter, .repeated-item.ng-move {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  opacity:0;
+}

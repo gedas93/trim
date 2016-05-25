@@ -11,17 +11,6 @@ Trim.controller('ContentCtrl', function ($scope, $rootScope, Training){
   
   });
 
-  // $scope.showTrainingDetails = function (training_id) {
-  //   for (var i = 0 ; i <= $scope.trainings.length - 1 ; i++) {
-  //     if($scope.trainings[i].id == training_id){
-  //       $rootScope.selectedTraining = $scope.trainings[i];
-  //     }
-  //   };
-  //   $rootScope.resetAllMenuItems();
-    
-  //   $scope.mainBodyContent = "./views/trainingDetails.html"
-  //   console.log($rootScope.selectedTraining);
-  // }; 
 
   $scope.getContentSrc = function(){
     if($scope.mainBodyContent == undefined){$scope.mainBodyContent = "views/trainings.html";} //index page

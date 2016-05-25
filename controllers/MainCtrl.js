@@ -167,14 +167,15 @@ var Trim = angular.module('Trim', ['ngMaterial', 'ngResource', 'lbServices', 'ui
               });
             };
             $rootScope.theme = {
-              toolBar: "#455A64",
-              sideNav: "#455A64",
-              content: "#607D8B",
+              toolBar: "#ECEFF1",
+              sideNav: "#263238",
+              content: "#ECEFF1",
               loginHeader: "#4527A0",
-              loginBody: "#78909C"
+              loginBody: "#78909C",
+              accent: "#90A4AE"
             };
             $rootScope.loginToast = function () {
-              $mdToast.show($mdToast.simple({position: 'top right'}).textContent('You have successfuly logged in'));
+              $mdToast.show($mdToast.simple({position: 'bottom right'}).textContent('You have successfuly logged in'));
             };
             
           }

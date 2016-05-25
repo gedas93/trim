@@ -1,6 +1,13 @@
-
-<div flex-gt-xs="10" layout:"row" style="" >  
-  <md-input-container flex="100"  md-no-float class="md-block" style="color: #FFFFFF" >
+<div flex class="md-padding">
+<div flex layout="row" style="" >  
+  <md-input-container flex="33"  >
+    <md-icon md-svg-src="./assets/icons/filter_grey.svg" ></md-icon>
+    <md-select ng-model="filter.show" placeholder="Show" style="color: #000000">
+      <md-option ng-value="">All</md-option>
+      <md-option ng-value="true">Avialable</md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container flex="66" style="color: #FFFFFF" >
     <md-icon md-svg-src="./assets/icons/search.svg" ></md-icon>
     <input ng-model="searchText" type="text" placeholder="Search"  >
   </md-input-container>
@@ -47,4 +54,5 @@
     </md-button>
     <md-divider ng-if="!$last"></md-divider>
   </div>
+</div>
 </div>

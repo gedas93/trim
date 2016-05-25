@@ -1,4 +1,4 @@
-Trim.controller('AddTrainingCtrl', function($scope, $mdDialog, Training) {
+Trim.controller('AddTrainingCtrl', function($scope, $mdDialog, Training, $rootScope) {
 	$scope.trainingTypes = [
 		"Conference",
 		"Seminar",
