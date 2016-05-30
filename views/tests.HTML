@@ -1,9 +1,16 @@
-<md-card>
-	<md-card-content>
-		<h2>Test development in progress</h2>
-		<p>Currently there are no tests available. Tests logic is under construction. </p>
-	</md-card-content>
-	<div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">
-	   <md-button class="md-raised">Read more</md-button>
-	 </div>
-</md-card>
+<div ng-if="adminUser" layout="row" ng-controller="AdminCtrl" class="md-whiteframe-3dp" style="background-color:#FFFFFF; color: #000000; border-radius: 3px 3px 0px 0px ">
+  <!-- Admin toolbar -->        
+  <md-button ng-click="adminAdd.training()">Add Training</md-button>
+  <md-button ui-sref="newTest" >Create Test</md-button>      
+</div>
+<div flex layout="row" layout-wrap>
+	<a  flex="45" ng-repeat="test in allTests" ui-sref="testsinner({id : test.id})" ng-class="'testCard'">
+		<img src="./assets/img/newsPictures/class.jpeg" style="width:100%; height:auto" class="md-whiteframe-3dp">
+		<div class="md-padding">
+			<strong>{{test.name}}</strong></br>
+			<span>{{test.description}}</span>
+		</div>
+		
+	</a>
+</div>
+

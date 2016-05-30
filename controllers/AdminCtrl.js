@@ -25,6 +25,14 @@ Trim.controller('AdminCtrl', function($scope, $mdDialog, $mdMedia, $rootScope) {
 
 	$scope.adminAdd.test = function(){
 		console.info("create test clicked");
+		$mdDialog.show({
+			controller : 'CreateTestCtrl',
+			parent: angular.element(document.body),
+			templateUrl : './views/add-test.HTML',
+			fullscreen : false,
+			bindToController : true,
+			//locals : {trainingInfo : tr}
+		})
 	}
 	
 	$scope.adminEdit.trainingInfo = function (tr) {

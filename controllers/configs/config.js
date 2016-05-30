@@ -30,6 +30,12 @@ Trim.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       controller: 'TestsCtrl',
       data: {title: "TESTS"}
     })
+    .state('newTest', {
+      url: "/newTest",
+      templateUrl: "views/add-test.HTML",
+      controller: 'CreateTestCtrl',
+      data: {title: "NEW TEST"}
+    })
     .state('settings', {
       url: "/settings",
       templateUrl: "views/settings.HTML",
@@ -37,10 +43,16 @@ Trim.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       data: {title: "SETTINGS"}
     })
     .state('trainingsinner', {
-      url: "/trainings/:id",
+      url: "/training/:id",
       templateUrl: "views/trainingDetails.HTML",
       controller: 'TrainingDetailsCtrl',
-      data: {title: "TRAINING"}
+      data: {title: "TRAINING"},
+    })
+    .state('testsinner', {
+      url: "/test/:id",
+      templateUrl: "views/take-test.HTML",
+      controller: 'TakeTestCtrl',
+      data: {title: "TEST"},
     });
 }).run(function($rootScope, $state){
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

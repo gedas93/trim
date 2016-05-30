@@ -1,0 +1,135 @@
+<md-toolbar md-whiteframe="8">
+	<div flex class="md-toolbar-tools" layout="row" layout-align="end center" style="background-color:#000000;">
+		<div flex="33">Create new test</div>
+		<div flex="66" layout-align="end center" layout="row">
+		  <md-button class="md-raised" ng-click="createNewTest()">
+		  	<md-icon md-svg-icon="./assets/icons/delete.svg" ></md-icon>
+		  	TRASH
+		  </md-button>
+		  <md-button class="md-raised md-primary" ng-if="false">
+		  	PREVIEW
+		  </md-button>
+		  <md-button class="md-raised md-warn" ng-click="saveTest(newTest)">
+		  	<md-icon md-svg-icon="./assets/icons/done.svg" ></md-icon>
+		  	FINISH
+		  </md-button>
+		</div>  
+	</div>
+</md-toolbar>
+<div class="md-padding" layout="column">
+<!-- <form ng-submit="submitParameters()" ng-if="!paramsDone"> -->
+	<!--Parameters of new test.-->
+	<div layout="row">
+		<div layout="column" flex="50">
+			<md-input-container flex required class="md-padding" flex>
+				<label style="color:black">Name</label>
+				<input type="text" ng-model="newTest.name" style="color:black" >
+			</md-input-container>
+			<md-input-container flex class="md-padding" flex>
+				<label style="color:black">Description</label>
+				<input type="text" ng-model="newTest.description" >
+			</md-input-container>
+		</div>
+		<div layout="column" flex="50">
+			<md-input-container flex class="md-padding" flex>
+				<md-checkbox ng-model="assignedToTraining" name="Assigned to training" aria-label="isAssigned" ng-click="newTest.assigned = ''">
+					Assigned to training
+				</md-checkbox>
+			</md-input-container>
+			<md-input-container flex class="md-padding" flex>
+				<label>Training course</label>
+				<md-select ng-model="newTest.assigned" ng-disabled="!assignedToTraining"> 
+				  <md-option ng-repeat="tr in allTrainings" ng-value="tr.id">{{tr.name}}</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+	</div>
+	<!-- All Questions -->
+	<md-card >
+		<div ng-repeat="cQ in newTest.questions track by $index" class="md-padding">
+			<span>Question {{$index + 1}} :</span> <h4>{{cQ.question}}</h4> 
+			<table style="width:100%">
+				<tr>
+					<td ng-class="'header'">Answers:</td>
+				</tr>
+				<tr ng-repeat="cA in cQ.answers track by $index">
+					<td style="background-color:{{isCorrect(cQ.multiple ,$index, cQ.correct) ? '#A5D6A7' : '';}}">
+						{{$index}}: {{cA}}
+					</td>
+				</tr>
+			</table>
+			</br>
+			<hr ng-if="!$last" />
+		</div>
+	</md-card>
+	<!--Parameters of new test end-->
+	<hr />
+	<!-- New Question -->
+	<md-card style="background-color:{{theme.accent}}" class="md-whiteframe-z3">
+		<div class="md-padding">
+			<div flex layout="row">
+				<div flex="70" layout="column">
+					<md-input-container>
+						<label style="color:black">New question</label>
+						<input type="text" ng-model="newQuestion.question">
+					</md-input-container>
+					<div layout="column" >
+						<md-radio-group ng-if="!multiple" ng-model="newTestParams.correct">
+							<div flex layout="row" ng-repeat="q in newQuestion.answers track by $index">
+								<md-input-container flex="70">
+									<label style="color:black">Answer {{$index + 1}}</label>
+									<input type="text" ng-model="newQuestion.answers[$index]">
+								</md-input-container>
+								<span flex="10"></span>
+								<md-radio-button class="md-padding" ng-value="$index" aria-label="radioButton"></md-radio-button>
+							</div>
+						</md-radio-group>
+						<div ng-if="multiple">
+							<div flex layout="row" ng-repeat="q in newQuestion.answers track by $index">
+								<md-input-container flex="70">
+									<label style="color:black">Answer {{$index + 1}}</label>
+									<input type="text" ng-model="newQuestion.answers[$index]">
+								</md-input-container>
+								<span flex="10"></span>
+								<md-checkbox ng-checked="exist($index, newTestParams.correct)" aria-label="checkBox" class="md-padding" ng-click="toggleCheckBox($index, newTestParams.correct)"></md-checkbox>
+							</div>
+						</div>
+						<div layout-align="center center">
+							<md-button class="" ng-click="addAnswer()">
+								<md-icon md-svg-icon="./assets/icons/add.svg" ></md-icon>
+								Add another answer
+							</md-button>	
+						</div>
+					</div>
+				</div>
+				<div flex="25" layout="column">
+					<md-input-container flex>
+						<label>Answer type</label>
+						<md-select ng-model="multiple"> 
+						  <md-option ng-value="false" ng-click="newTestParams.correct = 0">One answer</md-option>
+						  <md-option ng-value="true" ng-click="newTestParams.correct = []">Muliple choice</md-option>
+						</md-select>
+					</md-input-container>
+					<!-- <span>Correct: {{newTestParams.correct}}</span> -->
+				</div>
+
+				<div flex="5" layout="column">
+					<md-button class="md-icon-button md-primary" ng-click="saveQuestion(newQuestion)">
+						<md-icon md-svg-icon="./assets/icons/done.svg" ></md-icon>
+						<md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+						  Save
+						</md-tooltip>
+					</md-button>
+					<md-button class="md-icon-button md-primary" ng-click="CreateNewQuestion()">
+						<md-icon md-svg-icon="./assets/icons/close.svg" ></md-icon>
+						<md-tooltip md-visible="false" md-direction="bottom" md-delay="10">
+						  Clear
+						</md-tooltip>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</md-card>
+	<!-- Add Question End -->
+	
+</div>

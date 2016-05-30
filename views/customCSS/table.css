@@ -27,16 +27,3 @@ tr:hover {
 .even {
 	background-color: #F5F5F5;
 }
-/*md-content {
-	background-image: url("/assets/img/test.png");
-	background-size: auto 25%;
-	background-repeat: repeat-x;
-}*/
-
-.reportsFilter.ng-enter, .repeated-item.ng-move {
-  -webkit-transition:0.5s linear all;
-  -moz-transition:0.5s linear all;
-  -o-transition:0.5s linear all;
-  transition:0.5s linear all;
-  opacity:0;
-}
