@@ -17,32 +17,25 @@
             	<md-icon ng-if="!grid" md-svg-icon="./assets/icons/grid_view.svg"></md-icon>
             	<md-icon ng-if="grid" md-svg-icon="./assets/icons/list_view.svg"></md-icon>
           	</md-button> 
-			<md-button ng-if="adminUser" ui-sref="newTest" class="md-icon-button md-primary">
+			<md-button ng-if="adminUser" ng-click="createLector()" class="md-icon-button md-primary">
             	<md-icon md-svg-icon="./assets/icons/plus_black.svg"></md-icon>
-          	</md-button>
-          	<md-button ng-if="adminUser" ng-click="admin.edit = !admin.edit" class="md-icon-button md-primary">
-            	<md-icon md-svg-icon="./assets/icons/edit.svg"></md-icon>
           	</md-button>
 		</div>
 	</div>
 
 	<div class="md-padding" ng-cloak>
 		<div flex layout="row" layout-wrap layout-align="start center" >		
- 		<div flex="{{layout.flex}}" flex ng-repeat="test in allTests | filter:searchText" layout="{{layout.lay}}" class="testCard" style="height:{{layout.height}}" layout-align="start stretch">
+ 		<div flex="{{layout.flex}}" flex ng-repeat="lector in Lectors | filter:searchText" layout="{{layout.lay}}" class="testCard" style="height:{{layout.height}}" layout-align="start stretch">
  			<img flex="{{layout.flexWidthImg}}" class="testCardImg" ng-src="http://d7grugt4bdqjo.cloudfront.net/app/media/75" class="md-card-image" alt="Washed Out"> 
  			<div flex="50" layout="column" layout-align="start start">
- 				<h3>{{test.name}}</h3>
- 				<p>{{test.description}}</p>
+ 				<h3>{{lector.name}} {{lector.surname}}</h3>
+ 				<p>{{lector.email}}</p>
+ 				<p>{{lector.phone}}</p>
  			</div>
  			<div flex layout="{{layout.layInv}}" layout-align="center stretch">
-				<md-button style="width: {{ grid ? '100%' : ''}} " class="md-raised md-primary" ui-sref="testsinner({id : test.id})" layout="row" layout-align="center center">Take Test</md-button>
+				<md-button style="width: {{ grid ? '100%' : ''}} " class="md-raised md-primary" ng-click="lectorInfo(lector.id)" layout="row" layout-align="center center">More Info</md-button>
 				<div layout="row">
-					<md-button ng-if="admin.edit" ng-click="admin.delete(test.id)" class="md-icon-button md-primary">
-						<md-icon md-svg-icon="./assets/icons/edit.svg"></md-icon>
-					</md-button>
-					<md-button ng-if="admin.edit" ng-click="admin.delete(test.id)" class="md-icon-button md-primary">
-						<md-icon md-svg-icon="./assets/icons/close_black.svg"></md-icon>
-					</md-button>
+					
 				</div>		
  			</div>		
  		</div>

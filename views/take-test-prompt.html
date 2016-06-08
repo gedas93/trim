@@ -1,0 +1,38 @@
+<md-dialog-content >
+	<md-toolbar layout="row" layout-align="center center">
+		<p>Please identify yourself.</p>
+	</md-toolbar>
+	<div style="width:550px" class="md-padding">
+		<form flex layout="column"  ng-init="testParams = {}" ng-submit="submitAuth(testParams)">
+			
+			<md-input-container>
+				<label>Name</label>
+				<input type="text" required ng-model="testParams.name">
+			</md-input-container>
+			<md-input-container>
+				<label>Surname</label>
+				<input type="text" required ng-model="testParams.surname">
+			</md-input-container>
+			<md-input-container>
+				<label>Email</label>
+				<input type="email" required ng-model="testParams.email">
+			</md-input-container>
+			<md-input-container>
+				<label>Department</label>
+				<input type="text" required ng-model="testParams.department">
+			</md-input-container>
+			<md-input-container>
+				<label>Your Manager</label>
+				<input type="text" required ng-model="testParams.manager">
+			</md-input-container>
+</md-dialog-content>
+			<md-dialog-actions layout="row" layout-align="end center">
+				<md-button class="md-raised" ng-click="cancel()">
+					Cancel
+				</md-button>
+				<md-button type="submit" class="md-primary md-raised">
+					Start test
+				</md-button>
+			</md-dialog-actions>
+		</form>
+	</div>

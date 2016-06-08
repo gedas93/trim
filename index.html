@@ -1,7 +1,7 @@
 <html ng-app = "Trim">
 
   <head>
-    <title>Smart - v.0.5.18</title>
+    <title>GetSmart - v.0.6.8</title>
     <link href="./bower_components/angular-material/angular-material.css" rel="stylesheet" />
     <link href="./views/customCSS/table.css" rel="stylesheet" />
     <link href="./views/customCSS/test.css" rel="stylesheet" />
@@ -78,6 +78,14 @@
             ui-sref="reports" ng-click="selectContentItem(4)">
               <md-icon md-svg-src="./assets/icons/reports.svg" ></md-icon></br>
               Reports
+            </md-button>
+          </md-list-item>
+
+          <md-list-item style="background-color:{{ selectedItemCurrent[5].bcgColor }}" ng-if="adminUser">
+            <md-button ui-sref="lectors" style="width:100%; font-weight:{{ selectedItemCurrent[5].fontweight }}"
+           ng-click="selectContentItem(5)">
+              <md-icon md-svg-src="./assets/icons/lectors.svg" ></md-icon></br>
+              Lectors
             </md-button>
           </md-list-item>
 
@@ -293,6 +301,7 @@
     <script src="controllers/EventInfoCtrl.js" type="text/javascript" ></script>
     <script src="controllers/CreateTestCtrl.js" type="text/javascript" ></script>
     <script src="controllers/TakeTestCtrl.js" type="text/javascript" ></script>
+    <script src="controllers/LectorsCtrl.js" type="text/javascript" ></script>
 
     <script src="controllers/configs/config.js" type="text/javascript" ></script>
 

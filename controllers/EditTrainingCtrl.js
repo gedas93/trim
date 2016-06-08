@@ -1,5 +1,7 @@
-Trim.controller('EditTrainingCtrl', function($scope, $rootScope, $mdDialog, Training, trainingInfo, Event) {
-	$scope.trainingInfo = trainingInfo;
+Trim.controller('EditTrainingCtrl', function($scope, $rootScope, $mdDialog, Training, Event,  $stateParams, $state) {
+	Training.findById({id:$stateParams.id},function(res){
+		$scope.trainingInfo = res;
+	})
 	$scope.trainingTypes = [
 		"Conference",
 		"Seminar",
@@ -13,19 +15,18 @@ Trim.controller('EditTrainingCtrl', function($scope, $rootScope, $mdDialog, Trai
 		"BASE",
 		"LINE"
 	];
-	$scope.closeDialog = function(){
-		$mdDialog.hide();
-	};
 	$scope.adminEdit = {};
 	$scope.adminEdit.save = function(){
 		Training.prototype$updateAttributes(
-		   trainingInfo, function(res){
+		   {id : $stateParams.id},$scope.trainingInfo, function(res){
 				$mdDialog.show(
 				$mdDialog.alert()
 					.title('Hooray!')
-			        .textContent('Training info (#' + triningInfo.id + ') has been succefully saved.')
+			        .textContent('Training info (#' + $scope.trainingInfo.id + ') has been succefully saved.')
 			        .ok('Thanks!')
-				);
+				).then(function(){
+					$state.go('trainingsinner',{id:$scope.trainingInfo.id})
+				});
 		   }, function (err){
 		   		$mdDialog.show(
 				$mdDialog.alert()
@@ -35,5 +36,5 @@ Trim.controller('EditTrainingCtrl', function($scope, $rootScope, $mdDialog, Trai
 				);
 		   });
 	};
-	console.info($scope.trainingInfo.name);
+	console.info($stateParams.id);
 });

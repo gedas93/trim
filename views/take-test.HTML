@@ -1,1 +1,50 @@
-{{currentTest}}
+<!-- <pre> {{currentTest | json}} </pre> -->
+
+<div flex ng-if="auth" style="">
+	<!-- <md-card flex>
+		<md-toolbar layout-align="center center" style="color:white; background-color:red; font-size:30pt">Warining</md-toolbar>
+		<span class="md-padding">Currently "tests" are under early beta development. None of these tests are validated, nor test result is recorded. Use only for testing purposes.</span>
+	</md-card> -->
+
+	<md-card class="md-padding" flex>
+		<h3>{{currentTest.name}}</h3>
+		<span>{{currentTest.description}}</span>
+	</md-card>
+
+	<div flex layout="row" layout-align="center start">
+	<md-card ng-class="'takeTestMainCard'" flex>
+		<div ng-class="'takeTestQuestionCard'" ng-repeat="(outterIndex, Q) in currentTest.questions track by $index" ng-init="outterIndex = $index">
+			<div ng-class="'takeTestQuestionHeader'">
+				{{outterIndex + 1}}: {{Q.question}}
+				<!-- <div ng-class="'multipleChip'" ng-if="isMultiple(Q.correct)" >
+					Muliple answers
+				</div> -->
+			</div>
+
+			<md-radio-group ng-if="!isMultiple(Q.correct)" ng-model="currentAnswers[outterIndex]">
+		      <div ng-repeat='(innerIndex1, A) in Q.answers track by $index' class="row">
+		        <div flex layout='row' layout-align="start center" style="background-color:{{isCorrect(outterIndex, innerIndex1)}}">
+		          <md-radio-button flex
+		              ng-value="innerIndex1"
+		              class="radioButton" >
+		            {{A}}
+		          </md-radio-button>
+		        </div>
+		      </div>
+		    </md-radio-group>
+
+		    <div ng-if="isMultiple(Q.correct)">
+				<div flex layout="row" ng-repeat='(innerIndex2, A) in Q.answers track by innerIndex2' layout="row" ng-init="currA = currentAnswers">
+					<md-checkbox ng-checked="exist(innerIndex2, currA[outterIndex])" aria-label="checkBox" class="radioButton" ng-click="selectCorrectAnswer(outterIndex, innerIndex2)" style="background-color:{{isCorrect(outterIndex, innerIndex2)}}">{{A}}</md-checkbox>
+				</div>
+			</div>
+			<hr ng-if="!$last" style="" />
+		</div>
+	</md-card>
+	
+	</div>
+	<div layout="column" layout-align="center center" >
+		<md-button class="md-raised md-warn" ng-click="calculateResults()" aria-label="Done Test" style="width:100%; max-width:960px; height:65px;">Done!</md-button>
+	</div>
+	
+</div>

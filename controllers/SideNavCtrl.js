@@ -6,7 +6,8 @@ Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootSco
         {refSrc:"/views/trainings.html", fontweight:"", bcgColor:""},
         {refSrc:"/views/tests.html", fontweight:"", bcgColor:""},
         {refSrc:"/views/settings.html", fontweight:"", bcgColor:""},
-        {refSrc:"/views/settings.html", fontweight:"", bcgColor:""}  
+        {refSrc:"/views/settings.html", fontweight:"", bcgColor:""},
+        {refSrc:"/views/settings.html", fontweight:"", bcgColor:""}   
       ];
     };
     $rootScope.resetAllMenuItems();
@@ -23,8 +24,6 @@ Trim.controller('SideNavAndContentViewCtrl', function($scope, $mdMedia, $rootSco
     }
     
     $scope.selectContentItem = $rootScope.selectContentItem
-    $rootScope.$watch('mainBodyContent', function(){
-      console.log("mainBodyContent at ListCtrl has changed")
-    });
+    
 
 });

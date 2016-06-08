@@ -45,8 +45,8 @@
 		</div>
 	</div>
 	<!-- All Questions -->
-	<md-card >
-		<div ng-repeat="cQ in newTest.questions track by $index" class="md-padding">
+	<md-card ng-class="'TakeTestWrap'">
+		<div ng-repeat="cQ in newTest.questions track by $index" class="testQuestions">
 			<span>Question {{$index + 1}} :</span> <h4>{{cQ.question}}</h4> 
 			<table style="width:100%">
 				<tr>
@@ -62,7 +62,7 @@
 			<hr ng-if="!$last" />
 		</div>
 	</md-card>
-	<!--Parameters of new test end-->
+	
 	<hr />
 	<!-- New Question -->
 	<md-card style="background-color:{{theme.accent}}" class="md-whiteframe-z3">
