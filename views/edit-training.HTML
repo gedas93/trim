@@ -1,8 +1,9 @@
+<md-card class="animated fadeInLeft" style="margin:15px">
 <md-toolbar md-whiteframe="8">
-<div flex class="md-toolbar-tools" layout-align="space-between center" style="background-color:#E65100;">
+<div flex class="md-toolbar-tools" layout-align="space-between center" style="background-color:{{theme.sideNav}};">
   <p>Edit {{trainingInfo.name}}</p>
   <md-button class="md-icon-button" ng-click="closeDialog()">
-  	<md-icon md-svg-src="./assets/icons/close.svg" aria-label="Close"></md-icon>
+  	<md-icon md-svg-src="./assets/icons/close.svg" ui-sref="trainingsinner({id : trainingInfo.id})" aria-label="Close"></md-icon>
   </md-button>
 </div>
 
@@ -101,3 +102,4 @@
 		<md-button type="submit" class="md-raised md-warn">Submit</md-button>
 	</md-dialog-actions>
 </form>
+</md-card>

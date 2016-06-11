@@ -31,13 +31,17 @@ Trim.controller('TrainingDetailsCtrl', function($scope, $rootScope, Training, Ev
     }
 
     $scope.subscribe = function (training_id) {
-		$mdDialog.show({
-			controller : 'SubscribeCtrl',
-			parent: angular.element(document.body),
-			templateUrl : './views/subscribe-training.HTML'
-
-		})
-		$rootScope.currentTrId = training_id;
+        var prompt = {
+            title: 'Subscribe',
+            textContent: 'You will get notifiied when new event appears.',
+            placeholder: 'E-mail',
+            ok: 'Submit',
+            cancel: 'Cancel',
+            theme: 'dark'
+        }
+        $mdDialog.show($mdDialog.prompt(prompt)).then(function(result){   
+            console.log('Your email is ' + result);
+        });
     }
 
 

@@ -54,8 +54,8 @@ Trim.controller('TestsCtrl', function ($scope, $rootScope, Test, Training, $mdDi
 			.cancel('Cancel');
 		$mdDialog.show(confirm).then(function() {
 	    	Test.deleteById({id: testId}, function(res){
-				console.log('success')
-				console.log(res);
+				// console.log('success')
+				// console.log(res);
 				$scope.loadAllTests();
 			}, function (err) {
 				console.log(err);

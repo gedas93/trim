@@ -22,5 +22,37 @@ Trim.controller('ContentCtrl', function ($scope, $rootScope, Training){
     $scope.searchText = '';
   };
 
+  $scope.grid = false;
+  //default layout parameters
+  $scope.layout = {
+        flex:'100',
+        height:'100',
+        lay:'row',
+        flexWidthImg: '15',
+        layInv:'column'
+      };
 
+
+  $scope.changeLayout = function() {
+    if ($scope.grid) {
+      $scope.layout = {
+        flex:'100',
+        height:'100',
+        lay:'row',
+        flexWidthImg: '15',
+        layInv:'column'
+      };
+      $scope.grid = !$scope.grid;
+    }
+    else {
+      $scope.layout = {
+        flex:'30',
+        height:'300',
+        lay:'column',
+        flexWidthImg: '25',
+        layInv:'row'
+      };
+      $scope.grid = !$scope.grid;
+    }
+  };
 });

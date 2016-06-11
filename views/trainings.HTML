@@ -1,33 +1,45 @@
-<div flex class="md-padding">
-<div flex layout="row" style="" >  
-  <md-input-container flex="33"  >
-    <md-icon md-svg-src="./assets/icons/filter_grey.svg" ></md-icon>
-    <md-select ng-model="filter.show" placeholder="Show" style="color: #000000">
-      <md-option ng-value="">All</md-option>
-      <md-option ng-value="true">Avialable</md-option>
-    </md-select>
-  </md-input-container>
-  <md-input-container flex="66" style="color: #FFFFFF" >
-    <md-icon md-svg-src="./assets/icons/search.svg" ></md-icon>
-    <input ng-model="searchText" type="text" placeholder="Search"  >
-  </md-input-container>
+<div flex class="md-padding animated fadeInUp">
+<div  layout="row" style="" >  
+    <md-input-container flex="20"  >
+      <md-icon md-svg-src="./assets/icons/filter_grey.svg" ></md-icon>
+      <md-select ng-model="filter.show" placeholder="Show" style="color: #000000">
+        <md-option ng-value="">All</md-option>
+        <md-option ng-value="true">Avialable</md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container flex="60" style="color: #FFFFFF" >
+      <md-icon md-svg-src="./assets/icons/search.svg" ></md-icon>
+      <input ng-model="searchText" type="text" placeholder="Search"  >
+    </md-input-container>
+    <div flex="20" layout="row" layout-align="end center">
+      
+      <md-button class="md-icon-button md-primary" aria-label="Chang Layout" ng-click="changeLayout()">
+              <md-icon ng-if="!grid" md-svg-icon="./assets/icons/grid_view.svg"></md-icon>
+              <md-icon ng-if="grid" md-svg-icon="./assets/icons/list_view.svg"></md-icon>
+            </md-button> 
+      <md-button ng-if="adminUser" ui-sref="newTest" class="md-icon-button md-primary">
+              <md-icon md-svg-icon="./assets/icons/plus_black.svg"></md-icon>
+            </md-button>
+            <md-button ng-if="adminUser" ng-click="admin.edit = !admin.edit" class="md-icon-button md-primary">
+              <md-icon md-svg-icon="./assets/icons/edit.svg"></md-icon>
+            </md-button>
+    </div>
+  </div>
 
-</div>
-
-<div layout="column" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 3px;">
+<!-- <div layout="column" class="md-whiteframe-3dp" style="background-color:#FFFFFF; border-radius: 3px;">
     <div ng-if="adminUser" layout="row" ng-controller="AdminCtrl" class="md-whiteframe-3dp" style="background-color:#FFFFFF; color: #000000; border-radius: 3px 3px 0px 0px ">
-      <!-- Admin toolbar -->        
+       
       <md-button ng-click="adminAdd.training()">Add Training</md-button>
       <md-button ng-disabled="true" ng-click="adminAdd.test()">Create Test</md-button>      
-    </div>
+    </div> -->
 
 
 
-  <div flex-gt-xs="10" layout="column" ng-repeat="t in trainings | filter:searchText" ng-controller= "DialogCtrl" >
+  <!-- <div flex-gt-xs="10" layout="column" ng-repeat="t in trainings | filter:searchText" ng-controller= "DialogCtrl" >
     <md-button flex ui-sref="trainingsinner({id : t.id})" layout-align="start start" style="float:left" >
       <div flex layout="row" class="media">
         <div flex="10" layout-allign="center center">
-          <img style="border-radius:8px; height:60px; width:auto" class="media-object" src="{{t.imgUrl}}" layout-align="start center">
+          <img style="border-radius:8px; height:60px; width:auto" class="media-object" src="{{ t.imgUrl }}" layout-align="start center">
         </div>
 
         <div flex="30">
@@ -53,6 +65,23 @@
       </div>
     </md-button>
     <md-divider ng-if="!$last"></md-divider>
+  </div> -->
+
+  <div  style="padding:60px; ; background-size: 100% 100%; background-repeat: no-repeat;">
+    <div flex layout="row" layout-wrap layout-align="start center" >    
+    <md-button flex="{{layout.flex}}" flex ng-repeat="t in trainings | filter:searchText" layout="{{layout.lay}}" class="testCard" style="height:{{layout.height}}; " layout-align="start stretch" ui-sref="trainingsinner({id : t.id})"> 
+      <img flex="{{layout.flexWidthImg}}" class="testCardImg" ng-src="{{ t.imgUrl }}" > 
+      <div flex="50" layout="column" layout-align="start start">
+        <h3>{{t.name}}</h3>
+        <p>{{t.discription}}</p>
+      </div>
+      <div flex layout="{{layout.layInv}}" layout-align="center stretch">
+        <!-- <md-button style="width: {{ grid ? '100%' : ''}} " class="md-raised md-primary" ui-sref="testsinner({id : test.id})" layout="row" layout-align="center center">Take Test</md-button> -->
+        
+      </md-button>    
+    </div>
+
+    </div>
+    
+    
   </div>
-</div>
-</div>
